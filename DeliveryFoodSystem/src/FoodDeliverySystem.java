@@ -169,7 +169,7 @@ public class FoodDeliverySystem {
     private void loginCustomer() {//DB
         String username;
         String password;
-        boolean checkLogin = false;
+        boolean checkLogin ;
         do {
             System.out.println("<<Login>>");
             System.out.println("Enter Username : ");
@@ -177,7 +177,7 @@ public class FoodDeliverySystem {
             System.out.println("Enter Password : ");
             password = sc.nextLine();
             
-            testCustomer.login(username, password);
+            checkLogin = testCustomer.login(username, password);
 
             if (checkLogin != true) {
                 System.out.println("Login Fail! Login again");

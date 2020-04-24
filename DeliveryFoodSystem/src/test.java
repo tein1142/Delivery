@@ -29,16 +29,16 @@ public class test {
         String username = "sayhi";
         String password = "1111";
         
-        CustomerAccount cus_acc = new CustomerAccount(username, password, showPerson());
+        CustomerAccount cus_acc = new CustomerAccount(username, password, selectPersonFromDB());
         
         testCustomer = cus_acc;
         
         System.out.println(testCustomer);
     }
-    public static PersonProfile showPerson(){
-        PersonProfile person = selectPersonFromDB();
-        return person;
-    }
+//    public static PersonProfile showPerson(){
+//        PersonProfile person = selectPersonFromDB();
+//        return person;
+//    }
     public static PersonProfile selectPersonFromDB(){
         Scanner sc = new Scanner(System.in);
         String name = sc.next();
