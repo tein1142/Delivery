@@ -25,9 +25,9 @@ public class DatabaseSystem {
     public static void main(String[] args) {
 //        ConnectDB();
 //    System.out.println(loginDB("tein114", "1234"));
-//        System.out.println(Register("tein1142", "1234", "zunisa", "bangkok eiei", "0877195586"));
+       System.out.println(registerDB("tein1142", "1234", "zunisa", "bangkok eiei", "0877195586"));
 //        System.out.println(getPersonFromDB("tein1142", "1234"));
-        CustomerAccount cus = new CustomerAccount("tein1142", "1234",getPersonFromDB("tein1142", "1234"));
+//        CustomerAccount cus = new CustomerAccount("tein1142", "1234",getPersonFromDB("tein1142", "1234"));
         
 //        showItemDB();
     
@@ -55,7 +55,7 @@ public class DatabaseSystem {
     public static boolean loginDB(String user, String pass) {//Complete
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            ResultSet cus_rs = stm.executeQuery("SELECT username,password FROM register where username = '"+user+"' and password = '"+pass+"'");
+            ResultSet cus_rs = stm.executeQuery("SELECT username,password FROM cus_account where username = '"+user+"' and password = '"+pass+"'");
              while (cus_rs.next()) {
             String usercheck = cus_rs.getString("username");
             String passcheck = cus_rs.getString("password");
@@ -72,7 +72,7 @@ public class DatabaseSystem {
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
 
-            ResultSet persons = stm.executeQuery("select name,address,phone from register where username = '" + username + "' and password = '" + password + "'");
+            ResultSet persons = stm.executeQuery("select name,address,phone from cus_account where username = '" + username + "' and password = '" + password + "'");
             while (persons.next()) {
                 String name = persons.getString("name");
                 String address = persons.getString("address");
@@ -94,7 +94,7 @@ public class DatabaseSystem {
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
 
-             stm.executeUpdate("INSERT INTO register VALUES('" + username + "','" + password + "','" + name + "','" + address + "','" + phone + "')");
+             stm.executeUpdate("INSERT INTO cus_account VALUES('" + username + "','" + password + "','" + name + "','" + address + "','" + phone + "')");
             return true;
 
         } catch (SQLException ex) {
