@@ -189,7 +189,7 @@ public class FoodDeliverySystem {
         } while (menuId != 0);
     }
 
-    private void loginCustomer() {//DB
+    private void loginCustomer() {//Complete
         String username;
         String password;
         boolean checkLogin ;
@@ -208,13 +208,13 @@ public class FoodDeliverySystem {
         System.out.println("Login Successful");        
     }
 
-    private void registerCustomer() {//DB
+    private void registerCustomer() {//Complete
         String username;
         String password;
         String name;
         String address;
         String phone;
-        boolean checkLogin ;
+//        boolean checkLogin ;
         do {
             System.out.println("<<Register>>");
             System.out.println("Username : ");
@@ -228,15 +228,9 @@ public class FoodDeliverySystem {
             System.out.println("Tel.: ");
             phone = sc.next();
             
-//            checkLogin = testRestuarant.register(username, password, name, address, phone);
-            checkLogin = DBservice.DatabaseSystem.registerDB(username, password, name, address, phone);
-//            testRestuarant.register(username, password, name, address, phone);
-        } while (checkLogin != true);
-        
-//        PersonProfile person = new PersonProfile(name, address, phone);
-//        CustomerAccount cus_acc = new CustomerAccount(username, password, person);
-        
-//        customerMenu();
+            
+        } while (testRestuarant.register(username, password, name, address, phone) != true);
+        System.out.println("Register Complete");        
     }
     
    

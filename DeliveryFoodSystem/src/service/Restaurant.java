@@ -96,10 +96,13 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         return true;
     }
 
-    @Override
+    @Override//Complete
     public boolean register(String user, String pass ,String name, String address, String phone) {
-        DBsystem.registerDB(name, pass, name, address, phone);
-        return false;
+        if (DBsystem.registerDB(user, pass, name, address, phone) != true || user == null || pass ==null) {
+            System.out.println("Register Failed Plese Register Again!");
+            return false;
+        }   
+        return true;
     }
     
    
