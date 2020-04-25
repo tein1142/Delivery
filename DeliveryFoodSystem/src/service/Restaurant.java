@@ -5,6 +5,7 @@
  */
 package service;
 
+import DBservice.DatabaseSystem;
 import order.Order;
 import order.ShoppingCart;
 import product.Product;
@@ -16,9 +17,11 @@ enum RestaurantStatus{
 }
         
 public class Restaurant implements CustomerService, AdminService{
+    private DatabaseSystem DBsystem;
     private String restaurantName;
     private String location;
     private Product[] product;
+    private ShoppingCart cart;
     private CustomerAccount customer[];
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
@@ -26,7 +29,7 @@ public class Restaurant implements CustomerService, AdminService{
     //CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

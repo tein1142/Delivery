@@ -223,9 +223,9 @@ public class FoodDeliverySystem {
         Product pdt1 = new Food(1,"Soup",40);
         Product pdt2 = new Food(2,"Pizza",105);
         Product pdt3 = new Beverage(3,"Bubble Tea",35);
-        Product pdt4 = new Beverage(4,"",35);
+        Product pdt4 = new Beverage(4,"Coffee",35);
         
-        Product[] pdts = {pdt1,pdt2,pdt3};
+        Product[] pdts = {pdt1,pdt2,pdt3,pdt4};
         
         signIn();
         

@@ -16,7 +16,7 @@ import service.CustomerService;
 
 
 public class CustomerAccount extends Account{
-    private ShoppingCart cart;
+    private ShoppingCart[] cart;
 
     public CustomerAccount(Account account) {
         super(account);

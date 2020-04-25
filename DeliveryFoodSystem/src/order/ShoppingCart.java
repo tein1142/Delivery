@@ -6,12 +6,35 @@
 package order;
 
 import product.Product;
+import service.CustomerService;
 
 /**
  *
  * @author tanaw
  */
-public class ShoppingCart {
+public abstract class ShoppingCart {
     private Product prod;
+    private int quantity;
     private int totalPrice;
+
+    public ShoppingCart() {
+    }
+
+    public Product getProd() {
+        return prod;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "ShoppingCart{" + "prod=" + prod + ", quantity=" + quantity + ", totalPrice=" + totalPrice + '}';
+    }
+    
 }
