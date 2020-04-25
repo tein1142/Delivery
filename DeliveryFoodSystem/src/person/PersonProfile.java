@@ -14,6 +14,12 @@ public class PersonProfile {
     private String address;
     private String tel;
 
+    public PersonProfile(PersonProfile person) {
+        this.name= person.name;
+        this.address = person.address;
+        this.tel = person.tel;
+    }
+
     public PersonProfile(String name, String address, String tel) {
         this.name = name;
         this.address = address;

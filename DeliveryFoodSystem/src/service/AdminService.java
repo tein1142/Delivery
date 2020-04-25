@@ -13,9 +13,9 @@ import user.AdminAccount;
  * @author tanaw
  */
 public interface AdminService {
-    public abstract boolean addProduct(AdminAccount admin, Product prod);
-    public abstract boolean removeProduct(AdminAccount admin, Product prod);
-    public abstract boolean setPriceProduct(AdminAccount admin, Product prod);
+    public abstract boolean addProduct(/*AdminAccount admin,*/ Product prod);
+    public abstract boolean removeProduct(/*AdminAccount admin,*/ Product prod);
+    public abstract boolean setPriceProduct(/*AdminAccount admin,*/ Product prod);
 
     
 }

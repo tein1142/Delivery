@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import person.PersonProfile;
+import user.CustomerAccount;
 
 /**
  *
@@ -23,9 +24,13 @@ public class DatabaseSystem {
 
     public static void main(String[] args) {
 //        ConnectDB();
-//        System.out.println(loginDB("tein114", "1234"));
+//    System.out.println(loginDB("tein114", "1234"));
 //        System.out.println(Register("tein1142", "1234", "zunisa", "bangkok eiei", "0877195586"));
 //        System.out.println(getPersonFromDB("tein1142", "1234"));
+        CustomerAccount cus = new CustomerAccount("tein1142", "1234",getPersonFromDB("tein1142", "1234"));
+        
+//        showItemDB();
+    
     }
 
     public static Connection ConnectDB() {
@@ -47,27 +52,23 @@ public class DatabaseSystem {
 
     }
 
-    public static boolean loginDB(String user, String pass) {
+    public static boolean loginDB(String user, String pass) {//Complete
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            ResultSet cus_rs = stm.executeQuery("SELECT user, pass FROM register where username = '" + user + "' and '" + pass + "' ");
-            if (true) {
-                
-            }
-//            while (cus_rs.next()) {
-//                System.out.println("User: " + user + " " + "Password: " + pass);
-//                return true;
-//            }
-
+            ResultSet cus_rs = stm.executeQuery("SELECT username,password FROM register where username = '"+user+"' and password = '"+pass+"'");
+             while (cus_rs.next()) {
+            String usercheck = cus_rs.getString("username");
+            String passcheck = cus_rs.getString("password");
+                 return true;
+             }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return false;
     }
-
-    public PersonProfile getPersonFromDB(String username, String password) {
-        //(select name , address, tel from Account);
+    
+    public static PersonProfile getPersonFromDB(String username, String password) {//Complete
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
 
@@ -76,22 +77,24 @@ public class DatabaseSystem {
                 String name = persons.getString("name");
                 String address = persons.getString("address");
                 String phone = persons.getString("phone");
+//                System.out.println(name +" "+address +" "+phone);
                 PersonProfile person = new PersonProfile(name,address,phone);
+//                return true;
                 return person;
             }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         };
-
+//            return false;
         return null;
     }
 
-    public boolean registerDB(String username, String password, String name, String address, String phone) {
+    public static boolean registerDB(String username, String password, String name, String address, String phone) {//Complete
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
 
-            int row = stm.executeUpdate("INSERT INTO register VALUES('" + username + "','" + password + "','" + name + "','" + address + "','" + phone + "')");
+             stm.executeUpdate("INSERT INTO register VALUES('" + username + "','" + password + "','" + name + "','" + address + "','" + phone + "')");
             return true;
 
         } catch (SQLException ex) {
@@ -99,6 +102,22 @@ public class DatabaseSystem {
         }
         return false;
     }
-
+    
+    public static boolean showItemDB(){
+         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
+                Statement stm = conn.createStatement();) {
+            ResultSet item = stm.executeQuery("SELECT * FROM product");
+            while (item.next()) {
+                String idproduct= item.getString("idproduct");
+                String pdName = item.getString("product_name");
+                String pdPrice= item.getString("product_price");
+                System.out.println(idproduct+". "+"ProductName: "+pdName+"   ProductPrice: "+pdPrice);
+            }
+                return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        return false;
+    }
 }
 

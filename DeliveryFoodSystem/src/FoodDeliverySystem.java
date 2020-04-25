@@ -35,44 +35,63 @@ public class FoodDeliverySystem {
 //    private Order[] testOrder;
     private Restaurant testRestuarant;
     private static final Scanner sc = new Scanner(System.in);
+    
 
-    public FoodDeliverySystem(CustomerAccount testCustomer, Product[] testProduct) {
-        this.testCustomer = testCustomer;
+    public FoodDeliverySystem(String resName, String resLocation, Product[] testProduct, AdminAccount admin) {
+        this.testRestuarant = new Restaurant(resName, resLocation, 5);
+        this.testAdmin = admin;
         this.testProduct = testProduct;
     }
     
-    
-    public void adminMenu(){
-        int menuId;
-        do {
-            System.out.println("<<Admin Menu>>");
-            System.out.println("1. Add Product");
-            System.out.println("2. Remove Product");
-            System.out.println("3. Show Product");
-            System.out.println("4. Set Price Product");
-//            System.out.println("3. Show Customer"); set Price
-            System.out.println("0. Exit ");
-            System.out.println("Enter your menu [0-4]: ");
-            menuId = sc.nextInt();
-            switch (menuId) {
-                case 0:
-                    break;
-                case 1:
-                    addProduct();
-                    break;
-                case 2:
-                    removeProduct();
-                    break;
-                case 3:
-                    showProduct();
-                    break;
-                case 4:
-                    setPriceProduct();
-                    break;
-                    
-            }
-        } while (menuId != 0);
+     public static void main(String[] args) {
+        Product pdt1 = new Food(1,"Soup",40);
+        Product pdt2 = new Food(2,"Pizza",105);
+        Product pdt3 = new Beverage(3,"Bubble Tea",35);
+        Product pdt4 = new Beverage(4,"Coffee",35);
+        
+        Product[] Products = {pdt1,pdt2,pdt3,pdt4};
+        
+        PersonProfile person = new PersonProfile("tein1142", "BNK", "0874444444");
+        AdminAccount admin = new AdminAccount("username", "pass", person);
+        FoodDeliverySystem system = new FoodDeliverySystem("Tein Res&Bar", "BNK", Products, admin);
+        
+        system.signIn();
+        
+        
     }
+    
+    
+//    public void adminMenu(){
+//        int menuId;
+//        do {
+//            System.out.println("<<Admin Menu>>");
+//            System.out.println("1. Add Product");
+//            System.out.println("2. Remove Product");
+//            System.out.println("3. Show Product");
+//            System.out.println("4. Set Price Product");
+////            System.out.println("3. Show Customer"); set Price
+//            System.out.println("0. Exit ");
+//            System.out.println("Enter your menu [0-4]: ");
+//            menuId = sc.nextInt();
+//            switch (menuId) {
+//                case 0:
+//                    break;
+//                case 1:
+//                    addProduct();
+//                    break;
+//                case 2:
+//                    removeProduct();
+//                    break;
+//                case 3:
+//                    showProduct();
+//                    break;
+//                case 4:
+//                    setPriceProduct();
+//                    break;
+//                    
+//            }
+//        } while (menuId != 0);
+//    }
     
     
     public void customerMenu(){
@@ -95,13 +114,13 @@ public class FoodDeliverySystem {
                     addProductToCart();
                     break;
                 case 2:
-                    removeProductFormCart();//into DB
+//                    removeProductFormCart();//into DB
                     break;
                 case 3:
-                    checkPriceFormCart();
+//                    checkPriceFormCart();
                     break;
                 case 4:
-                    checkoutOrder();
+//                    checkoutOrder();
                     break;
                     
             }
@@ -123,10 +142,10 @@ public class FoodDeliverySystem {
                 case 0:
                     break;
                     
-                case 1:
-                    signInAdmin();
-                    adminMenu();
-                    break;
+//                case 1:
+//                    signInAdmin();
+//                    adminMenu();
+//                    break;
 
                 case 2:
                     signInCustomer();
@@ -141,9 +160,9 @@ public class FoodDeliverySystem {
     
     
 
-    private void signInAdmin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    private void signInAdmin() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     private void signInCustomer() {
         int menuId;
@@ -177,11 +196,12 @@ public class FoodDeliverySystem {
         do {
             System.out.println("<<Login>>");
             System.out.println("Enter Username : ");
-            username = sc.nextLine();
+            username = sc.next();
             System.out.println("Enter Password : ");
-            password = sc.nextLine();
+            password = sc.next();
             
             checkLogin = testRestuarant.login(username, password);
+//            checkLogin = testDB.loginDB(username, password);
 
             
         } while (checkLogin != true);
@@ -194,12 +214,13 @@ public class FoodDeliverySystem {
         String name;
         String address;
         String phone;
+        boolean checkLogin ;
         do {
             System.out.println("<<Register>>");
             System.out.println("Username : ");
-            username = sc.nextLine();
+            username = sc.next();
             System.out.println("Password : ");
-            password = sc.nextLine();
+            password = sc.next();
             System.out.println("Name : ");
             name = sc.next();
             System.out.println("Address : ");
@@ -207,26 +228,18 @@ public class FoodDeliverySystem {
             System.out.println("Tel.: ");
             phone = sc.next();
             
-            testRestuarant.register(username, password, name, address, phone);
-        } while (testRestuarant.register(username, password, name, address, phone) != true);
+//            checkLogin = testRestuarant.register(username, password, name, address, phone);
+            checkLogin = DBservice.DatabaseSystem.registerDB(username, password, name, address, phone);
+//            testRestuarant.register(username, password, name, address, phone);
+        } while (checkLogin != true);
         
 //        PersonProfile person = new PersonProfile(name, address, phone);
 //        CustomerAccount cus_acc = new CustomerAccount(username, password, person);
         
-        customerMenu();
+//        customerMenu();
     }
     
-    public static void main(String[] args) {
-        Product pdt1 = new Food(1,"Soup",40);
-        Product pdt2 = new Food(2,"Pizza",105);
-        Product pdt3 = new Beverage(3,"Bubble Tea",35);
-        Product pdt4 = new Beverage(4,"Coffee",35);
-        
-        Product[] testProducts = {pdt1,pdt2,pdt3,pdt4};
-        
-        signIn();
-        
-    }
+   
 
     private void addProductToCart() {
         System.out.println("Enter product Id: ");
@@ -236,14 +249,16 @@ public class FoodDeliverySystem {
         this.testRestuarant.addProductToCart(this.testProduct[choose-1], quantity);
     }
 
-    private void showProduct() {
-        System.out.println("---Items in Library---");
-        Iterator<Item> items = lib.iterator();
-        int i=0;
-        while (items.hasNext()) {
-            System.out.println((++i) + ". " +items.next());
-        }
-        if(i==0) return-1; 
-        else return i;
+    private void showProduct(){
+        testDB.showItemDB();
+//        System.out.println("---Items in Library---");
+//        Iterator<Item> items = lib.iterator();
+//        int i=0;
+//        while (items.hasNext()) {
+//            System.out.println((++i) + ". " +items.next());
+//        }
+//        if(i==0) return-1; 
+//        else return i;
+        
     }
 }

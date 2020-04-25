@@ -6,8 +6,10 @@
 package service;
 
 import DBservice.DatabaseSystem;
+import java.util.Arrays;
 import order.Order;
 import order.ShoppingCart;
+import person.PersonProfile;
 import product.Product;
 import user.AdminAccount;
 import user.CustomerAccount;
@@ -25,8 +27,10 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
     private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
+    private int countProduct=0;
 
-    public Restaurant(String restaurantName, String location) {
+    public Restaurant(String restaurantName, String location, int maxProduct) {
+        this.product = new Product[maxProduct];
         this.restaurantName = restaurantName;
         this.location = location;
     }
@@ -63,17 +67,20 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
 
     //Admin sservice
     @Override
-    public boolean addProduct(AdminAccount admin, Product prod) {
+    public boolean addProduct(/*AdminAccount admin,*/ Product prod) {
+        this.product[countProduct] = prod;
+        countProduct++;
+        System.out.println(Arrays.toString(product));
+        return true;
+    }
+
+    @Override
+    public boolean removeProduct(/*AdminAccount admin,*/ Product prod) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean removeProduct(AdminAccount admin, Product prod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean setPriceProduct(AdminAccount admin, Product prod) {
+    public boolean setPriceProduct(/*AdminAccount admin,*/ Product prod) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -94,6 +101,6 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         DBsystem.registerDB(name, pass, name, address, phone);
         return false;
     }
-
+    
    
 }
