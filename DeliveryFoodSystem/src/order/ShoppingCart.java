@@ -15,12 +15,14 @@ import service.CustomerService;
 public abstract class ShoppingCart {
     private Product prod;
     private int quantity;
+
     private int totalPrice;
 
     public ShoppingCart() {
     }
 
     public Product getProd() {
+        prod.
         return prod;
     }
 

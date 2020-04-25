@@ -6,6 +6,7 @@ import person.PersonProfile;
 import product.Beverage;
 import product.Food;
 import product.Product;
+import service.Restaurant;
 import user.Account;
 import user.AdminAccount;
 import user.CustomerAccount;
@@ -31,7 +32,7 @@ public class FoodDeliverySystem {
     private Product[] testProduct;
     private ShoppingCart[] cart;
 //    private Order[] testOrder;
-    private Restuarant testRestuarant;
+    private Restaurant testRestuarant;
     private static final Scanner sc = new Scanner(System.in);
 
     public FoodDeliverySystem(CustomerAccount testCustomer, Product[] testProduct) {
@@ -89,6 +90,7 @@ public class FoodDeliverySystem {
                 case 0:
                     break;                
                 case 1:
+                    showProduct();
                     addProductToCart();
                     break;
                 case 2:
@@ -225,9 +227,17 @@ public class FoodDeliverySystem {
         Product pdt3 = new Beverage(3,"Bubble Tea",35);
         Product pdt4 = new Beverage(4,"Coffee",35);
         
-        Product[] pdts = {pdt1,pdt2,pdt3,pdt4};
+        Product[] testProducts = {pdt1,pdt2,pdt3,pdt4};
         
         signIn();
         
+    }
+
+    private void addProductToCart() {
+        System.out.println("Enter product Id: ");
+        int choose = sc.nextInt();
+        System.out.println("Enter amount : ");
+        int quantity = sc.nextInt();
+        this.testRestuarant.addProductToCart(this.testProduct[choose-1], quantity);
     }
 }

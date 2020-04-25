@@ -26,6 +26,10 @@ public class Restaurant implements CustomerService, AdminService{
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
 
+    public Restaurant() {
+    }
+
+    
     //CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
