@@ -32,11 +32,11 @@ public class test {
     
     public static void main(String[] args) {
       
-//        System.out.println("hi");
-//        String username = "sayhi";
-//        String password = "1111";
-//        PersonProfile person = new PersonProfile("g", "f", "d");
-//        CustomerAccount cus_acc = new CustomerAccount(username, password, person);
+        System.out.println("hi");
+        String username = "sayhi";
+        String password = "1111";
+        PersonProfile person = new PersonProfile("g", "f", "d");
+        CustomerAccount cus_acc = new CustomerAccount(username, password, person);
 //         Product pdt1 = new Food(1,"Soup",40);
 //        Product pdt2 = new Food(2,"Pizza",105);
 //        Product pdt3 = new Beverage(3,"Bubble Tea",35);
