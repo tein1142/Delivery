@@ -9,11 +9,11 @@ import product.Product;
 import user.Account;
 import user.AdminAccount;
 import user.CustomerAccount;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //test
-=======
+//=======
 
->>>>>>> origin/master
+//>>>>>>> origin/master
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
