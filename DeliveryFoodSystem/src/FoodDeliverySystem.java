@@ -159,6 +159,7 @@ public class FoodDeliverySystem {
                     break;
                 case 1:
                     loginCustomer();
+                    customerMenu();
                     break;
                 case 2:
                     registerCustomer();
@@ -179,18 +180,11 @@ public class FoodDeliverySystem {
             System.out.println("Enter Password : ");
             password = sc.nextLine();
             
-            checkLogin = testCustomer.login(username, password);
+            checkLogin = testRestuarant.login(username, password);
 
-            if (checkLogin != true) {
-                System.out.println("Login Fail! Login again");
-            }
+            
         } while (checkLogin != true);
-
-        CustomerAccount cus_acc = new CustomerAccount(username, password, testDB.getPersonFromDB(username, password));
-        this.testCustomer = cus_acc;
-        customerMenu();
-        
-        
+        System.out.println("Login Successful");        
     }
 
     private void registerCustomer() {//DB
@@ -212,8 +206,8 @@ public class FoodDeliverySystem {
             System.out.println("Tel.: ");
             phone = sc.next();
             
-            testCustomer.register(username, password, name, address, phone);
-        } while (testCustomer.register(username, password, name, address, phone) != true);
+            testRestuarant.register(username, password, name, address, phone);
+        } while (testRestuarant.register(username, password, name, address, phone) != true);
         
 //        PersonProfile person = new PersonProfile(name, address, phone);
 //        CustomerAccount cus_acc = new CustomerAccount(username, password, person);

@@ -16,13 +16,13 @@ enum RestaurantStatus{
     OPEN, CLOSE
 }
         
-public class Restaurant implements CustomerService, AdminService{
+public class Restaurant implements CustomerService, AdminService, LoginService{
     private DatabaseSystem DBsystem;
     private String restaurantName;
     private String location;
     private Product[] product;
-    private ShoppingCart cart;
-    private CustomerAccount customer[];
+    private ShoppingCart[] cart;
+    private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
 
@@ -33,7 +33,9 @@ public class Restaurant implements CustomerService, AdminService{
     //CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
-        
+        this.cart = new ShoppingCart[10];
+        this.cart[1] = new ShoppingCart(prod,quantity);
+        return cart;
     }
 
     @Override
@@ -67,7 +69,23 @@ public class Restaurant implements CustomerService, AdminService{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override//Complete
+    public boolean login(String user, String pass) {
+        boolean checkLogin = DBsystem.loginDB(user, pass);
+        CustomerAccount cus_login =new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
+        if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
+            System.out.println("Login Failed!");
+            return false;
+        }
+        this.customer = cus_login;
+        return true;
+    }
 
-    
-    
+    @Override
+    public boolean register(String user, String pass ,String name, String address, String phone) {
+        DBsystem.registerDB(name, pass, name, address, phone);
+        return false;
+    }
+
+   
 }

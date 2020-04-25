@@ -12,5 +12,5 @@ package service;
 public interface LoginService {
     
     public abstract boolean login(String user, String pass);
-    public abstract boolean register(String user, String pass);
+    public abstract boolean register(String user, String pass ,String name, String address, String phone);
 }

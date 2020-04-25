@@ -25,18 +25,6 @@ public class CustomerAccount extends Account{
     public CustomerAccount(String username, String password, PersonProfile person) {
         super(username, password, person);
     }
-
-    public boolean login(String user, String pass) {
-//        if (loginDB(user, pass)==true) {
-//            
-//        }
-        return false;
-    }
-    
-     public boolean register(String username, String password, String name, String address, String phone) {
-        
-         return false;
-    }
     
     public ShoppingCart addProductToCart(Product prod, int quantity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

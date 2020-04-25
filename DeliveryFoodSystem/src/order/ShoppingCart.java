@@ -12,7 +12,7 @@ import service.CustomerService;
  *
  * @author tanaw
  */
-public abstract class ShoppingCart {
+public class ShoppingCart {
     private Product prod;
     private int quantity;
 
@@ -21,8 +21,12 @@ public abstract class ShoppingCart {
     public ShoppingCart() {
     }
 
+    public ShoppingCart(Product prod, int quantity) {
+        this.prod = prod;
+        this.quantity = quantity;
+    }
+
     public Product getProd() {
-        prod.
         return prod;
     }
 
