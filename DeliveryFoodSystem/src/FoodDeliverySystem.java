@@ -1,5 +1,6 @@
 
 import DBservice.DatabaseSystem;
+import java.util.Iterator;
 import java.util.Scanner;
 import order.ShoppingCart;
 import person.PersonProfile;
@@ -233,5 +234,16 @@ public class FoodDeliverySystem {
         System.out.println("Enter amount : ");
         int quantity = sc.nextInt();
         this.testRestuarant.addProductToCart(this.testProduct[choose-1], quantity);
+    }
+
+    private void showProduct() {
+        System.out.println("---Items in Library---");
+        Iterator<Item> items = lib.iterator();
+        int i=0;
+        while (items.hasNext()) {
+            System.out.println((++i) + ". " +items.next());
+        }
+        if(i==0) return-1; 
+        else return i;
     }
 }

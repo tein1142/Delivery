@@ -26,14 +26,16 @@ public class test {
     private static final Scanner sc = new Scanner(System.in);
     
     public static void main(String[] args) {
+        System.out.println("hi");
         String username = "sayhi";
         String password = "1111";
+        PersonProfile person = new PersonProfile("g", "f", "d");
+        CustomerAccount cus_acc = new CustomerAccount(username, password, person);
+//        CustomerAccount cus_acc = new CustomerAccount(username, password, selectPersonFromDB());
         
-        CustomerAccount cus_acc = new CustomerAccount(username, password, selectPersonFromDB());
+//        testCustomer = cus_acc;
         
-        testCustomer = cus_acc;
-        
-        System.out.println(testCustomer);
+//        System.out.println(testCustomer);
     }
 //    public static PersonProfile showPerson(){
 //        PersonProfile person = selectPersonFromDB();

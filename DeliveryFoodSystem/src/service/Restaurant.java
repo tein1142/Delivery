@@ -21,20 +21,28 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
     private String restaurantName;
     private String location;
     private Product[] product;
-    private ShoppingCart[] cart;
+    private ShoppingCart cart;
     private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
 
-    public Restaurant() {
+    public Restaurant(String restaurantName, String location) {
+        this.restaurantName = restaurantName;
+        this.location = location;
     }
 
     
-    //CustomerService
+
+    public Product[] getProduct() {
+        return product;
+    }
+
+    
+//    CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
-        this.cart = new ShoppingCart[10];
-        this.cart[1] = new ShoppingCart(prod,quantity);
+//        this.cart = new ShoppingCart[10];
+//        this.cart[1] = new ShoppingCart(prod,quantity);
         return cart;
     }
 
