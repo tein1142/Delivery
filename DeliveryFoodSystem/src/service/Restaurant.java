@@ -11,6 +11,7 @@ import order.Order;
 import order.ShoppingCart;
 import person.PersonProfile;
 import product.Product;
+import user.Account;
 import user.AdminAccount;
 import user.CustomerAccount;
 
@@ -74,9 +75,11 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         return true;
     }
 
-    @Override
-    public boolean removeProduct(/*AdminAccount admin,*/ Product prod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public boolean removeProduct(int idproduct) {
+        
+        boolean remove = DBsystem.removeProduct(idproduct);
+        return remove;
     }
 
     @Override
@@ -95,6 +98,32 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         this.customer = cus_login;
         return true;
     }
+//    @Override//Complete
+    public boolean login2(Account acc,String user, String pass) {
+        if (acc instanceof CustomerAccount) {
+            boolean checkLogin = DBsystem.loginDB(user, pass);
+            CustomerAccount cus_login =new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
+            
+            if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
+                System.out.println("Login Failed!");
+                return false;
+            }
+            this.customer = cus_login;
+            return true;
+
+        } else {
+            boolean checkLogin = DBsystem.loginDB2(user, pass);
+            AdminAccount cus_login =new AdminAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
+            
+            if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
+                System.out.println("Login Failed!");
+                return false;
+            }
+            
+            this.admin = cus_login;
+            return true;
+        }
+    }
 
     @Override//Complete
     public boolean register(String user, String pass ,String name, String address, String phone) {
@@ -104,6 +133,9 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         }   
         return true;
     }
+
+    
+    
     
    
 }

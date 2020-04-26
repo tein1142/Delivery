@@ -25,7 +25,7 @@ public class DatabaseSystem {
     public static void main(String[] args) {
 //        ConnectDB();
 //    System.out.println(loginDB("tein114", "1234"));
-       System.out.println(registerDB("tein1142", "1234", "zunisa", "bangkok eiei", "0877195586"));
+//       System.out.println(registerDB("zunisa", "1234", "zunisa", "bnk", "48"));
 //        System.out.println(getPersonFromDB("tein1142", "1234"));
 //        CustomerAccount cus = new CustomerAccount("tein1142", "1234",getPersonFromDB("tein1142", "1234"));
         
@@ -59,6 +59,21 @@ public class DatabaseSystem {
              while (cus_rs.next()) {
             String usercheck = cus_rs.getString("username");
             String passcheck = cus_rs.getString("password");
+                 return true;
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
+    }
+    public static boolean loginDB2(String user, String pass) {//Complete
+        try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
+                Statement stm = conn.createStatement();) {
+            ResultSet admin_rs = stm.executeQuery("SELECT username,password FROM admin_account where username = '"+user+"' and password = '"+pass+"'");
+             while (admin_rs.next()) {
+            String usercheck = admin_rs.getString("username");
+            String passcheck = admin_rs.getString("password");
                  return true;
              }
         } catch (SQLException ex) {
@@ -117,6 +132,22 @@ public class DatabaseSystem {
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
         } 
+        return false;
+    }
+    public static boolean removeProduct(int idproduct){
+         if (idproduct == 0) {  
+                        System.out.println("Failed");
+                        return false;
+                    }
+         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
+                Statement stm = conn.createStatement();) {
+              stm.executeUpdate("delete from compro.product where idproduct = "+idproduct+"");
+            System.out.println("Delete Success");
+           return true;
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
         return false;
     }
 }

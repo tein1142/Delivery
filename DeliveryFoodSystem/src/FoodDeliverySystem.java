@@ -61,37 +61,45 @@ public class FoodDeliverySystem {
     }
     
     
-//    public void adminMenu(){
-//        int menuId;
-//        do {
-//            System.out.println("<<Admin Menu>>");
-//            System.out.println("1. Add Product");
-//            System.out.println("2. Remove Product");
-//            System.out.println("3. Show Product");
-//            System.out.println("4. Set Price Product");
-////            System.out.println("3. Show Customer"); set Price
-//            System.out.println("0. Exit ");
-//            System.out.println("Enter your menu [0-4]: ");
-//            menuId = sc.nextInt();
-//            switch (menuId) {
-//                case 0:
-//                    break;
-//                case 1:
+    public void adminMenu(){
+        int menuId;
+        int idproduct=0;
+        do {
+            System.out.println("<<Admin Menu>>");
+            System.out.println("1. Add Product");
+            System.out.println("2. Remove Product");
+            
+            System.out.println("3. Show Product");
+            System.out.println("4. Set Price Product");
+//            System.out.println("3. Show Customer"); set Price
+            System.out.println("0. Exit ");
+            System.out.println("Enter your menu [0-4]: ");
+            menuId = sc.nextInt();
+            switch (menuId) {
+                case 0:
+                    break;
+                case 1:
 //                    addProduct();
-//                    break;
-//                case 2:
-//                    removeProduct();
-//                    break;
-//                case 3:
-//                    showProduct();
-//                    break;
-//                case 4:
+                    break;
+                case 2:
+                    
+                    showProduct();        
+                    System.out.println("Select for delete");
+                     idproduct = sc.nextInt();
+                     testRestuarant.removeProduct(idproduct);
+                   
+                    
+                    break;
+                case 3:
+                    showProduct();
+                    break;
+                case 4:
 //                    setPriceProduct();
-//                    break;
-//                    
-//            }
-//        } while (menuId != 0);
-//    }
+                    break;
+                    
+            }
+        } while (menuId != 0);
+    }
     
     
     public void customerMenu(){
@@ -131,7 +139,7 @@ public class FoodDeliverySystem {
         int menuId;
         do {
             System.out.println("<<Choose your account>>");
-            System.out.println("1. Admin Sign In ");
+            System.out.println("1. Admin Login");
             System.out.println("2. Customer Sign In ");
            
             System.out.println("0. Exit ");
@@ -142,14 +150,12 @@ public class FoodDeliverySystem {
                 case 0:
                     break;
                     
-//                case 1:
-//                    signInAdmin();
-//                    adminMenu();
-//                    break;
+                case 1:
+                    signInAdmin();
+                    break;
 
                 case 2:
                     signInCustomer();
-                    
                     break;
 
             }
@@ -160,9 +166,30 @@ public class FoodDeliverySystem {
     
     
 
-//    private void signInAdmin() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    private void signInAdmin() {
+        int menuId;
+        do {
+            System.out.println("<<Admin Menu>>");
+            System.out.println("1. Login");
+
+            System.out.println("0. Exit ");
+            System.out.println("Enter your menu [0-2]: ");
+            menuId = sc.nextInt();
+            switch (menuId) {
+                case 0:
+                    break;
+                case 1:
+                    loginAdmin();
+                    adminMenu();
+                    break;
+                case 2:
+                    registerCustomer();
+                    break;
+                    
+            }
+        } while (menuId != 0);
+        
+    }
 
     private void signInCustomer() {
         int menuId;
@@ -188,7 +215,23 @@ public class FoodDeliverySystem {
             }
         } while (menuId != 0);
     }
+    
+    private void loginAdmin() {//Complete
+        String username;
+        String password;
 
+        do {
+            System.out.println("<<Login>>");
+            System.out.println("Enter Username : ");
+            username = sc.next();
+            System.out.println("Enter Password : ");
+            password = sc.next();
+            
+        } while (testRestuarant.login(username, password) != true);
+        
+        System.out.println("Login Successful");        
+    }
+    
     private void loginCustomer() {//Complete
         String username;
         String password;
@@ -255,4 +298,6 @@ public class FoodDeliverySystem {
 //        else return i;
         
     }
+
+    
 }
