@@ -10,10 +10,12 @@ package product;
  * @author tanaw
  */
 enum ProductStatus{
+    CREATED,
     READY, 
     OUTOFSTOCK,
     COMPLETED,
     COOKING,
+    NotREADY,
     CANCELED,
     NONE
 }

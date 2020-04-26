@@ -6,21 +6,37 @@
 package product;
 
 
-public abstract class Product {
+public class Product {
     private int productId;
+    private String productName;
+    private int price;
     private ProductStatus productStatus;
 
-    public Product(int productId) {
+    public Product(int productId, String productName, int price) {
         this.productId = productId;
-        this.productStatus = productStatus.READY;
+        this.productName = productName;
+        this.price = price;
+        this.productStatus = productStatus.CREATED;
     }
 
     public int getProductId() {
         return productId;
     }
 
+    public String getProductName() {
+        return productName;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
     public ProductStatus getProductStatus() {
         return productStatus;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     public void setProductStatus(ProductStatus productStatus) {
@@ -47,11 +63,7 @@ public abstract class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "productId=" + productId + ", productStatus=" + productStatus + '}';
+        return "Product{" + "productId=" + productId + ", productName=" + productName + ", price=" + price + ", productStatus=" + productStatus + '}';
     }
-    
-   
 
-    
-    
-}
+}    

@@ -7,8 +7,8 @@ package service;
 
 import DBservice.DatabaseSystem;
 import java.util.Arrays;
-import order.Order;
-import order.ShoppingCart;
+import cart.order.Order;
+import cart.order.ShoppingCart;
 import person.PersonProfile;
 import product.Product;
 import user.Account;

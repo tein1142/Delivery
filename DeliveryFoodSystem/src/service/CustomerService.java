@@ -5,8 +5,8 @@
  */
 package service;
 
-import order.Order;
-import order.ShoppingCart;
+import cart.order.Order;
+import cart.order.ShoppingCart;
 import product.Product;
 import user.CustomerAccount;
 

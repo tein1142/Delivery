@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import person.PersonProfile;
+import user.Account;
 import user.CustomerAccount;
 
 /**
@@ -28,7 +29,8 @@ public class DatabaseSystem {
 //       System.out.println(registerDB("zunisa", "1234", "zunisa", "bnk", "48"));
 //        System.out.println(getPersonFromDB("tein1142", "1234"));
 //        CustomerAccount cus = new CustomerAccount("tein1142", "1234",getPersonFromDB("tein1142", "1234"));
-        
+//        PersonProfile pr = new PersonProfile("a", "b", "c");
+//        Account ac = new CustomerAccount("un", "pass", pr);
 //        showItemDB();
     
     }

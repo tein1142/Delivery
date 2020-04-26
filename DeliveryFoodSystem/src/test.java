@@ -1,7 +1,7 @@
 
 import java.util.Arrays;
 import java.util.Scanner;
-import order.ShoppingCart;
+import cart.order.ShoppingCart;
 import person.PersonProfile;
 import product.Beverage;
 import product.Food;

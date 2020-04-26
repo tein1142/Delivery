@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package order;
+package cart.order;
 
 import product.Product;
 import service.CustomerService;
@@ -38,6 +38,10 @@ public class ShoppingCart {
         return totalPrice;
     }
 
+//    public int getPrice(Product prod){
+//        prod.
+//    }
+    
     @Override
     public String toString() {
         return "ShoppingCart{" + "prod=" + prod + ", quantity=" + quantity + ", totalPrice=" + totalPrice + '}';

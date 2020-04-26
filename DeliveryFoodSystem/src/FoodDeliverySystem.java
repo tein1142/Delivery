@@ -2,7 +2,7 @@
 import DBservice.DatabaseSystem;
 import java.util.Iterator;
 import java.util.Scanner;
-import order.ShoppingCart;
+import cart.order.ShoppingCart;
 import person.PersonProfile;
 import product.Beverage;
 import product.Food;
@@ -13,7 +13,6 @@ import user.AdminAccount;
 import user.CustomerAccount;
 //<<<<<<< HEAD
 //test
-//=======
 
 //>>>>>>> origin/master
 /*
@@ -44,7 +43,7 @@ public class FoodDeliverySystem {
     }
     
      public static void main(String[] args) {
-        Product pdt1 = new Food(1,"Soup",40);
+        Product pdt1 = new Product(1,"Soup",40);
         Product pdt2 = new Food(2,"Pizza",105);
         Product pdt3 = new Beverage(3,"Bubble Tea",35);
         Product pdt4 = new Beverage(4,"Coffee",35);
@@ -63,6 +62,30 @@ public class FoodDeliverySystem {
     
     public void adminMenu(){
         int menuId;
+        do {
+            System.out.println("<<Admin Menu>>");
+            System.out.println("1. Add Product");
+            System.out.println("2. Remove Product");
+            System.out.println("3. Show Product");
+            System.out.println("4. Set Price Product");
+//            System.out.println("3. Show Customer"); set Price
+            System.out.println("0. Exit ");
+            System.out.println("Enter your menu [0-4]: ");
+            menuId = sc.nextInt();
+            switch (menuId) {
+                case 0:
+                    break;
+                case 1:
+                    addProduct();
+                    break;
+                case 2:
+                    removeProduct();
+                    break;
+                case 3:
+                    showProduct();
+                    break;
+                case 4:
+                    setPriceProduct();
         int idproduct=0;
         do {
             System.out.println("<<Admin Menu>>");
