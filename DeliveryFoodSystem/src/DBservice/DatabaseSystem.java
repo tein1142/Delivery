@@ -162,11 +162,11 @@ public class DatabaseSystem {
         return null;
     }
     
-    public static boolean removeProduct(int idproduct){
-         if (idproduct == 0) {  
-                        System.out.println("Failed");
-                        return false;
-                    }
+    public static boolean removeProduct(Product prod){
+//         if (idproduct == 0) {  
+//                        System.out.println("Failed");
+//                        return false;
+//                    }
          try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
               stm.executeUpdate("delete from compro.product where idproduct = "+idproduct+"");

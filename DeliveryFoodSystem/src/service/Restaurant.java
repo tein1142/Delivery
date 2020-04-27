@@ -92,7 +92,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
     }
 
     
-    public boolean removeProduct(int idproduct) {
+    public boolean removeProduct(Product prod) {
         if (countProduct >= product.length) {
             Product[] temp = new Product[product.length+10];
             for (int i = 0; i < product.length; i++) {
@@ -102,13 +102,13 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
             this.product = temp;
         }
         for (int i = 0; i < product.length; i++) {
-            if (product[i].getProductId()==idproduct) {
+            if (product[i].equals(prod)) {
 //                product[i] = product[countProduct-1];
                 product[i] = null;
 //                product[countProduct-1] = null;
             }
         }
-        boolean remove = DBsystem.removeProduct(idproduct);
+        boolean remove = DBsystem.removeProduct(prod);
         return remove;
     }
 

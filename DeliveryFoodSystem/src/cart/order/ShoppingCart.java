@@ -14,18 +14,20 @@ import service.CustomerService;
  */
 public class ShoppingCart {
     private CartProduct[] cart;
-//    private Product[] product;
-//    private int quantity;
-    private int totalPrice = 0;
-    private int countProductInCart;
+    private int totalPrice;
+    private int countProductInCart =0;
 
-    public ShoppingCart() {
-        cart = new CartProduct[5];
+    public ShoppingCart(int maxCart) {
+        cart = new CartProduct[maxCart];
     }
 
 
     public CartProduct[] showProdFromCart() {
         return cart;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
     }
 
     public boolean addProdToCart(Product prod, int quantity){
@@ -47,18 +49,17 @@ public class ShoppingCart {
         
     }
     
-    public int calTotalPrice(CartProduct c){
+    public int calTotalPrice(){
         for (int i = 0; i < cart.length; i++) {
-            if (cart[i].equals(c)) {
-                totalPrice = cart[i].calPrice(cart[i].getProd());
-            }
+                totalPrice += cart[i].getCartPrice();
         }
         return totalPrice;
     }
 
+    
     @Override
     public String toString() {
-        return "ShoppingCart{" + "cart=" + cart + ", totalPrice=" + totalPrice + '}';
+        return "ShoppingCart{" + "cart=" + cart + ", totalPrice=" + totalPrice +  '}';
     }
     
   

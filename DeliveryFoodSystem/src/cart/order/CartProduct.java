@@ -14,7 +14,7 @@ import product.Product;
 public class CartProduct {
     private Product prod;
     private int quantity;
-    private int price =0 ;
+    private int cartPrice;
 
     public CartProduct() {
     }
@@ -22,20 +22,26 @@ public class CartProduct {
     public CartProduct(Product prod, int quantity){
         this.prod=prod;
         this.quantity = quantity;
+        this.cartPrice = prod.getPrice()*quantity;
     }
     
-    public int calPrice(Product prod){
-        price = prod.getPrice()*quantity;
-        return price;
+    public int getCartPrice(){
+        return cartPrice;
     }
 
     public Product getProd() {
         return prod;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     @Override
     public String toString() {
-        return "CartProduct{" + "prod=" + prod + ", quantity=" + quantity + ", price=" + price + '}';
+        return "CartProduct{" + "prod=" + prod + ", quantity=" + quantity + ", cartPrice=" + cartPrice + '}';
     }
+
+
     
 }
