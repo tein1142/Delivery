@@ -167,9 +167,10 @@ public class DatabaseSystem {
 //                        System.out.println("Failed");
 //                        return false;
 //                    }
+            int idproduct = prod.getProductId();
          try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-              stm.executeUpdate("delete from compro.product where idproduct = "+idproduct+"");
+              stm.executeUpdate("delete from compro.product where idproduct = "+ idproduct +"");
             System.out.println("Delete Success");
            return true;
 
