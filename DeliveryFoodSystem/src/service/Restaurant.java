@@ -28,10 +28,13 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
     private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
+    
     private int countProduct=0;
 
     public Restaurant(String restaurantName, String location, int maxProduct) {
-        this.product = new Product[maxProduct];
+//        this.product = new Product[maxProduct];
+        this.product = DBsystem.showProductDB();
+        countProduct = DBsystem.showProductDB().length;
         this.restaurantName = restaurantName;
         this.location = location;
     }
@@ -52,6 +55,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
 //    CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
+        
         shopCart.addProdToCart(prod, quantity);
         return shopCart;
     }
@@ -75,16 +79,35 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
     //Admin sservice
     @Override
     public boolean addProduct(/*AdminAccount admin,*/ Product prod) {
-        DBsystem.addProdToDB(prod);
-        this.product[countProduct] = prod;
-        countProduct++;
-        System.out.println(Arrays.toString(product));
+        if (countProduct >= product.length) {
+            Product[] temp = new Product[product.length+10];
+            for (int i = 0; i < product.length; i++) {
+                temp[i] = product[i];
+            }
+            this.product = temp;
+        }
+        DBservice.DatabaseSystem.addProdToDB(prod);
+        this.product[++countProduct] = prod;
         return true;
     }
 
     
     public boolean removeProduct(int idproduct) {
-        
+        if (countProduct >= product.length) {
+            Product[] temp = new Product[product.length+10];
+            for (int i = 0; i < product.length; i++) {
+                temp[i] = product[i];
+                
+            }
+            this.product = temp;
+        }
+        for (int i = 0; i < product.length; i++) {
+            if (product[i].getProductId()==idproduct) {
+//                product[i] = product[countProduct-1];
+                product[i] = null;
+//                product[countProduct-1] = null;
+            }
+        }
         boolean remove = DBsystem.removeProduct(idproduct);
         return remove;
     }
@@ -141,7 +164,21 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         return true;
     }
 
-    
+//    public boolean showProduct(Product pord){
+//      pord.getProductId();
+//      pord.getProductName();
+//      pord.getPrice();
+//
+////        System.out.println("---Items in Library---");
+////        Iterator<Item> items = lib.iterator();
+////        int i=0;
+////        while (items.hasNext()) {
+////            System.out.println((++i) + ". " +items.next());
+////        }
+////        if(i==0) return-1; 
+////        else return i;
+//        return true;
+//    }
     
     
    

@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import person.PersonProfile;
@@ -25,6 +26,17 @@ public class DatabaseSystem {
 
 
     public static void main(String[] args) {
+        Product test = new Product(5, "sus", 100);
+        Product[] product ;
+//        addProdToDB(test);
+        product = new Product[10];
+        product = showProductDB();
+        System.out.println(product.length);
+                System.out.println(Arrays.toString(product));
+         product = new Product[product.length+10];
+         System.out.println(product.length);
+//        System.out.println(showProductDB().length);
+        System.out.println(Arrays.toString(product));
 //        ConnectDB();
 //    System.out.println(loginDB("tein114", "1234"));
 //       System.out.println(registerDB("zunisa", "1234", "zunisa", "bnk", "48"));
@@ -35,6 +47,8 @@ public class DatabaseSystem {
 //        showItemDB();
     
     }
+
+    
 
     public static Connection ConnectDB() {
         String url = "jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC";
@@ -121,22 +135,33 @@ public class DatabaseSystem {
         return false;
     }
     
-    public static boolean showItemDB(){
+    public static Product[] showProductDB(){
+        int count =0 ;
+        int i =0;
          try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            ResultSet item = stm.executeQuery("SELECT * FROM product");
+            ResultSet item = stm.executeQuery("SELECT * FROM compro.product");
             while (item.next()) {
-                String idproduct= item.getString("idproduct");
-                String pdName = item.getString("product_name");
-                String pdPrice= item.getString("product_price");
-                System.out.println(idproduct+". "+"ProductName: "+pdName+"   ProductPrice: "+pdPrice);
+                count++;
             }
-                return true;
+            Product[] temp = new Product[count];
+            ResultSet item2 = stm.executeQuery("SELECT * FROM compro.product");
+            while (item2.next()) {
+                int idproduct= item2.getInt("idproduct");
+                String pdName = item2.getString("product_name");
+                int pdPrice= item2.getInt("product_price");
+                
+                temp[i] = new Product(idproduct, pdName, pdPrice);
+                i++;
+            }
+                return temp;
+                
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        return false;
+        return null;
     }
+    
     public static boolean removeProduct(int idproduct){
          if (idproduct == 0) {  
                         System.out.println("Failed");
@@ -154,8 +179,14 @@ public class DatabaseSystem {
         return false;
     }
 
-    public void addProdToDB(Product prod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public static void addProdToDB(Product prod) {
+         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
+                Statement stm = conn.createStatement();) {
+            stm.executeUpdate("INSERT INTO compro.product VALUES(" + prod.getProductId() + ",'" + prod.getProductName() + "'," + prod.getPrice() + ")");
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+       
     }
     
     

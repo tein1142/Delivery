@@ -35,7 +35,7 @@ public class FoodDeliverySystem {
     
 
     public FoodDeliverySystem(String resName, String resLocation, Product[] testProduct, AdminAccount admin) {
-        this.testRestuarant = new Restaurant(resName, resLocation, 5);
+        this.testRestuarant = new Restaurant(resName, resLocation, 10);
         this.testAdmin = admin;
         this.testProduct = testProduct;
     }
@@ -59,7 +59,7 @@ public class FoodDeliverySystem {
     
     
     public void adminMenu(){
-        int menuId = sc.nextInt();
+        int menuId ;
         do {
             System.out.println("<<Admin Menu>>");
             System.out.println("1. Add Product");
@@ -69,16 +69,17 @@ public class FoodDeliverySystem {
             System.out.println("4. Set Price Product");
             System.out.println("0. Exit ");
             System.out.println("Enter your menu [0-4]: ");
+            menuId = sc.nextInt();
             int idproduct=0;
             switch (menuId) {
                 case 0:
                     break;
                 case 1:
-//                    addProduct();
+                    addProduct();
                     break;
                 case 2:
                     
-                    showProduct();        
+                    showProduct();
                     System.out.println("Select for delete");
                      idproduct = sc.nextInt();
                      testRestuarant.removeProduct(idproduct);
@@ -281,18 +282,37 @@ public class FoodDeliverySystem {
         this.testRestuarant.addProductToCart(this.testProduct[choose-1], quantity);
     }
 
-    private void showProduct(){
-        testDB.showItemDB();
-//        System.out.println("---Items in Library---");
-//        Iterator<Item> items = lib.iterator();
-//        int i=0;
-//        while (items.hasNext()) {
-//            System.out.println((++i) + ". " +items.next());
-//        }
-//        if(i==0) return-1; 
-//        else return i;
-        
+    private void showProduct() {
+        Product[] prod = testRestuarant.getProduct();
+        for (int i = 0; i < prod.length; i++) {
+            if (prod[i] != null) {
+                System.out.println(prod[i]);
+            }
+        }
     }
+
+    private void addProduct() {
+        int Id;
+        String name;
+        int price;
+        boolean canAdd;
+//        boolean checkLogin ;
+        do {
+            System.out.println("<<Product>>");
+            System.out.println("ID : ");
+            Id = sc.nextInt();
+            System.out.println("name: ");
+            name = sc.next();
+            System.out.println("Price : ");
+            price = sc.nextInt();
+           
+            Product prod = new Product(Id, name, price);
+            canAdd = testRestuarant.addProduct(prod);
+        } while ( canAdd!= true);
+        System.out.println("Added Complete");        
+    }
+
+    
 
     
 }
