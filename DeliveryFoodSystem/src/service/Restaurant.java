@@ -24,7 +24,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
     private String restaurantName;
     private String location;
     private Product[] product;
-    private ShoppingCart cart;
+    private ShoppingCart shopCart;
     private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
@@ -36,7 +36,13 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         this.location = location;
     }
 
-    
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
 
     public Product[] getProduct() {
         return product;
@@ -46,14 +52,14 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
 //    CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
-//        this.cart = new ShoppingCart[10];
-//        this.cart[1] = new ShoppingCart(prod,quantity);
-        return cart;
+        shopCart.addProdToCart(prod, quantity);
+        return shopCart;
     }
 
     @Override
-    public boolean removeProductFormCart(Product prod, ShoppingCart cart) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ShoppingCart removeProductFormCart(Product prod) {
+        shopCart.removeProdFromCart(prod);
+        return shopCart;
     }
 
     @Override
@@ -69,6 +75,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
     //Admin sservice
     @Override
     public boolean addProduct(/*AdminAccount admin,*/ Product prod) {
+        DBsystem.addProdToDB(prod);
         this.product[countProduct] = prod;
         countProduct++;
         System.out.println(Arrays.toString(product));

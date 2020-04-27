@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import person.PersonProfile;
+import product.Product;
 import user.Account;
 import user.CustomerAccount;
 
@@ -152,5 +153,11 @@ public class DatabaseSystem {
         }
         return false;
     }
+
+    public void addProdToDB(Product prod) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
 
