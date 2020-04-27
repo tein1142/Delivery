@@ -3,6 +3,7 @@ import DBservice.DatabaseSystem;
 import java.util.Iterator;
 import java.util.Scanner;
 import cart.order.ShoppingCart;
+import java.util.Arrays;
 import person.PersonProfile;
 import product.Product;
 import service.Restaurant;
@@ -70,7 +71,7 @@ public class FoodDeliverySystem {
             System.out.println("0. Exit ");
             System.out.println("Enter your menu [0-4]: ");
             menuId = sc.nextInt();
-            int idproduct=0;
+            int index;
             switch (menuId) {
                 case 0:
                     break;
@@ -80,9 +81,9 @@ public class FoodDeliverySystem {
                 case 2:
                     
                     showProduct();
-                    System.out.println("Select for delete");
-                     idproduct = sc.nextInt();
-                     testRestuarant.removeProduct(idproduct);
+                    System.out.println("Select ID for delete");
+                     index = sc.nextInt();
+                     testRestuarant.removeProduct(index);
                    
                     
                     break;
@@ -147,7 +148,8 @@ public class FoodDeliverySystem {
                     break;
                     
                 case 1:
-                    signInAdmin();
+                    adminMenu();
+//                    signInAdmin();
                     break;
 
                 case 2:
@@ -211,6 +213,7 @@ public class FoodDeliverySystem {
             }
         } while (menuId != 0);
     }
+    
     
     private void loginAdmin() {//Complete
         String username;
@@ -284,11 +287,14 @@ public class FoodDeliverySystem {
 
     private void showProduct() {
         Product[] prod = testRestuarant.getProduct();
-        for (int i = 0; i < prod.length; i++) {
+        int i= 0;
+        for (i = 0; i < prod.length; i++) {
             if (prod[i] != null) {
-                System.out.println(prod[i]);
+                System.out.println((i+1)+". "+prod[i]);
+                   
             }
         }
+//            System.out.println(Arrays.toString(testRestuarant.getProduct()));
     }
 
     private void addProduct() {

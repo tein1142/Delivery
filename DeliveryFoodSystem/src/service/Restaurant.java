@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package service;
 
 import DBservice.DatabaseSystem;
@@ -15,11 +10,12 @@ import user.Account;
 import user.AdminAccount;
 import user.CustomerAccount;
 
-enum RestaurantStatus{
+enum RestaurantStatus {
     OPEN, CLOSE
 }
-        
-public class Restaurant implements CustomerService, AdminService, LoginService{
+
+public class Restaurant implements CustomerService, AdminService, LoginService {
+
     private DatabaseSystem DBsystem;
     private String restaurantName;
     private String location;
@@ -28,8 +24,8 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
     private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
-    
-    private int countProduct=0;
+
+    private int countProduct = 0;
 
     public Restaurant(String restaurantName, String location, int maxProduct) {
 //        this.product = new Product[maxProduct];
@@ -51,11 +47,10 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         return product;
     }
 
-    
 //    CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
-        
+
         shopCart.addProdToCart(prod, quantity);
         return shopCart;
     }
@@ -78,49 +73,35 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
 
     //Admin sservice
     @Override
-    public boolean addProduct(/*AdminAccount admin,*/ Product prod) {
+    public boolean addProduct(/*AdminAccount admin,*/Product prod) {
         if (countProduct >= product.length) {
-            Product[] temp = new Product[product.length+10];
+            Product[] temp = new Product[product.length + 10];
             for (int i = 0; i < product.length; i++) {
                 temp[i] = product[i];
             }
             this.product = temp;
         }
         DBservice.DatabaseSystem.addProdToDB(prod);
-        this.product[++countProduct] = prod;
+        this.product[countProduct++] = prod;
         return true;
     }
 
-    
-    public boolean removeProduct(Product prod) {
-        if (countProduct >= product.length) {
-            Product[] temp = new Product[product.length+10];
-            for (int i = 0; i < product.length; i++) {
-                temp[i] = product[i];
-                
-            }
-            this.product = temp;
-        }
-        for (int i = 0; i < product.length; i++) {
-            if (product[i].equals(prod)) {
-//                product[i] = product[countProduct-1];
-                product[i] = null;
-//                product[countProduct-1] = null;
-            }
-        }
-        boolean remove = DBsystem.removeProduct(prod);
+    @Override
+    public boolean removeProduct(int index) {
+        boolean remove = DBsystem.removeProduct(product[index-1]);
+        product[index-1] = null;
         return remove;
     }
 
     @Override
-    public boolean setPriceProduct(/*AdminAccount admin,*/ Product prod) {
+    public boolean setPriceProduct(/*AdminAccount admin,*/Product prod) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override//Complete
     public boolean login(String user, String pass) {
         boolean checkLogin = DBsystem.loginDB(user, pass);
-        CustomerAccount cus_login =new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
+        CustomerAccount cus_login = new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
         if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
             System.out.println("Login Failed!");
             return false;
@@ -129,11 +110,12 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
         return true;
     }
 //    @Override//Complete
-    public boolean login2(Account acc,String user, String pass) {
+
+    public boolean login2(Account acc, String user, String pass) {
         if (acc instanceof CustomerAccount) {
             boolean checkLogin = DBsystem.loginDB(user, pass);
-            CustomerAccount cus_login =new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
-            
+            CustomerAccount cus_login = new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
+
             if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
                 System.out.println("Login Failed!");
                 return false;
@@ -143,24 +125,24 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
 
         } else {
             boolean checkLogin = DBsystem.loginDB2(user, pass);
-            AdminAccount cus_login =new AdminAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
-            
+            AdminAccount cus_login = new AdminAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
+
             if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
                 System.out.println("Login Failed!");
                 return false;
             }
-            
+
             this.admin = cus_login;
             return true;
         }
     }
 
     @Override//Complete
-    public boolean register(String user, String pass ,String name, String address, String phone) {
-        if (DBsystem.registerDB(user, pass, name, address, phone) != true || user == null || pass ==null) {
+    public boolean register(String user, String pass, String name, String address, String phone) {
+        if (DBsystem.registerDB(user, pass, name, address, phone) != true || user == null || pass == null) {
             System.out.println("Register Failed Plese Register Again!");
             return false;
-        }   
+        }
         return true;
     }
 
@@ -179,7 +161,4 @@ public class Restaurant implements CustomerService, AdminService, LoginService{
 ////        else return i;
 //        return true;
 //    }
-    
-    
-   
 }
