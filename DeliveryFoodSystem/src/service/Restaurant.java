@@ -50,7 +50,6 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 //    CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
-
         shopCart.addProdToCart(prod, quantity);
         return shopCart;
     }
@@ -63,7 +62,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
     @Override
     public int checkPriceFormCart(ShoppingCart cart) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return shopCart.getTotalPrice();
     }
 
     @Override
@@ -94,22 +93,14 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     }
 
     @Override
-    public boolean setPriceProduct(/*AdminAccount admin,*/Product prod) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean setPriceProduct(/*AdminAccount admin,*/Product prod, int price) {
+        for (int i = 0; i < product.length; i++) {
+            if (product[i].equals(prod)) {
+                product[i].setPrice(price);
+            }
+        }
+        return true;
     }
-
-//    @Override//Complete
-//    public boolean login(String user, String pass) {
-//        boolean checkLogin = DBsystem.loginDB_Cus(user, pass);
-//        CustomerAccount cus_login = new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
-//        if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
-//            System.out.println("Login Failed!");
-//            return false;
-//        }
-//        this.customer = cus_login;
-//        return true;
-//    }
-//    @Override//Complete
 
     @Override
     public boolean login(Account acc, String user, String pass) {

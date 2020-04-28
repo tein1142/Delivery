@@ -33,6 +33,24 @@ public class Order {
             System.out.println(ex.getMessage());
         }     
     }                                    
+    public static void readOrder(CartProduct cart) {         
+        try (FileWriter fw = new FileWriter("order.txt");              
+                BufferedWriter bw=new BufferedWriter(fw);) {                      
+            bw.write("ProductID:"+cart.getProd().getProductId()+
+                    "\t"+cart.getProd().getProductName()+
+                    "\t price each product: "+cart.getProd().getPrice()+
+                    "\t quantity : "+cart.getQuantity()+
+                    "\t pric: "+cart.getProd().getPrice()+" bath \n"+                     
+                    "Totalprice = "+cart.getCartPrice()+" bath");
+        } catch (FileNotFoundException ex) {             
+            ex.printStackTrace();
+            System.out.println(ex.getMessage());
+        } 
+        catch (IOException ex) {             
+            ex.printStackTrace();    
+            System.out.println(ex.getMessage());
+        }     
+    }                                    
     public static void main(String[] args) {         
         Product p = new Product(131,"Mooknin",20);         
         CartProduct cart = new CartProduct(p, 5);
