@@ -56,7 +56,7 @@ public abstract class Account {
             return false;
         }
         final Account other = (Account) obj;
-        if (!Objects.equals(this.username, other.username)) {
+        if (!Objects.equals(this.person, other.person)) {
             return false;
         }
         return true;
