@@ -139,42 +139,40 @@ public class FoodDeliverySystem {
         String username;
         String password;
         boolean checkLogin;
-        do {
             System.out.println("<<Login>>");
             System.out.println("Enter Username : ");
             username = sc.next();
             System.out.println("Enter Password : ");
             password = sc.next();
             
-            checkLogin = testRestuarant.login(testCustomer, username, password);
+            testAdmin = new AdminAccount(username, password, DatabaseSystem.getPersonFromDB(username, password));
+            checkLogin = testRestuarant.login(testAdmin, username, password);
             if (checkLogin != true) {
                 System.out.println("Login Failed!");
-                break;
+            }else {
+                System.out.println("----------Login Successful----------");
+                adminMenu();
             }
-
-        } while (checkLogin != true);
-
-        System.out.println("----------Login Successful----------");
-
-        customerMenu();
     }
 
     private void loginCustomer() {//Complete
         String username;
         String password;
         boolean checkLogin;
-        do {
             System.out.println("<<Login>>");
             System.out.println("Enter Username : ");
             username = sc.next();
             System.out.println("Enter Password : ");
             password = sc.next();
-
+            
+            testCustomer = new CustomerAccount(username, password, DatabaseSystem.getPersonFromDB(username, password));
             checkLogin = testRestuarant.login(testCustomer, username, password);
-//            checkLogin = testDB.loginDB(username, password);
-
-        } while (checkLogin != true);
-        System.out.println("----------Login Successful----------");
+           if (checkLogin != true) {
+                System.out.println("Login Failed!");
+            }else {
+                System.out.println("----------Login Successful----------");
+                customerMenu();
+            }
     }
 
     private void registerCustomer() {//Complete
