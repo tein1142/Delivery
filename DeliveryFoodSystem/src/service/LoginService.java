@@ -5,12 +5,14 @@
  */
 package service;
 
+import user.Account;
+
 /**
  *
  * @author tanaw
  */
 public interface LoginService {
     
-    public abstract boolean login(String user, String pass);
+    public abstract boolean login(Account acc,String user, String pass);
     public abstract boolean register(String user, String pass ,String name, String address, String phone);
 }

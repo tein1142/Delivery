@@ -226,7 +226,7 @@ public class FoodDeliverySystem {
             System.out.println("Enter Password : ");
             password = sc.next();
             
-        } while (testRestuarant.login(username, password) != true);
+        } while (testRestuarant.login(testAdmin, username, password) != true);
         
         System.out.println("----------Login Successful----------");        
     }
@@ -242,7 +242,7 @@ public class FoodDeliverySystem {
             System.out.println("Enter Password : ");
             password = sc.next();
             
-            checkLogin = testRestuarant.login(username, password);
+            checkLogin = testRestuarant.login(testCustomer, username, password);
 //            checkLogin = testDB.loginDB(username, password);
 
             
