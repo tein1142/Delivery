@@ -81,7 +81,7 @@ public class FoodDeliverySystem {
                 case 2:
                     
                     showProduct();
-                    System.out.println("Select ID for delete");
+                    System.out.println("----------Select Number for delete----------");
                      index = sc.nextInt();
                      testRestuarant.removeProduct(index);
                    
@@ -148,8 +148,7 @@ public class FoodDeliverySystem {
                     break;
                     
                 case 1:
-                    adminMenu();
-//                    signInAdmin();
+                    signInAdmin();
                     break;
 
                 case 2:
@@ -159,7 +158,7 @@ public class FoodDeliverySystem {
             }
 
         } while (menuId != 0);
-        System.out.println("good bye!");
+        System.out.println("----------good bye!----------");
     }
     
     
@@ -168,6 +167,7 @@ public class FoodDeliverySystem {
         int menuId;
         do {
             System.out.println("<<Admin Menu>>");
+                    
             System.out.println("1. Login");
 
             System.out.println("0. Exit ");
@@ -228,7 +228,7 @@ public class FoodDeliverySystem {
             
         } while (testRestuarant.login(username, password) != true);
         
-        System.out.println("Login Successful");        
+        System.out.println("----------Login Successful----------");        
     }
     
     private void loginCustomer() {//Complete
@@ -247,7 +247,7 @@ public class FoodDeliverySystem {
 
             
         } while (checkLogin != true);
-        System.out.println("Login Successful");        
+        System.out.println("----------Login Successful----------");        
     }
 
     private void registerCustomer() {//Complete
@@ -272,7 +272,7 @@ public class FoodDeliverySystem {
             
             
         } while (testRestuarant.register(username, password, name, address, phone) != true);
-        System.out.println("Register Complete");        
+        System.out.println("----------Register Complete----------");        
     }
     
    
@@ -315,7 +315,7 @@ public class FoodDeliverySystem {
             Product prod = new Product(Id, name, price);
             canAdd = testRestuarant.addProduct(prod);
         } while ( canAdd!= true);
-        System.out.println("Added Complete");        
+        System.out.println("----------Added Complete----------");        
     }
 
     
