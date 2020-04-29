@@ -100,7 +100,6 @@ public class FoodDeliverySystem {
                     break;
                 case 1:
                     loginAdmin();
-                    adminMenu();
                     break;
                 case 2:
                     registerCustomer();
@@ -181,7 +180,6 @@ public class FoodDeliverySystem {
         String name;
         String address;
         String phone;
-//        boolean checkLogin ;
         do {
             System.out.println("<<Register>>");
             System.out.println("Username : ");
@@ -281,8 +279,7 @@ public class FoodDeliverySystem {
 
     private void showProduct() {
         Product[] prod = testRestuarant.getProduct();
-        int i = 0;
-        for (i = 0; i < prod.length; i++) {
+        for (int i = 0; i < prod.length; i++) {
             if (prod[i] != null) {
                 System.out.println((i + 1) + ". " + prod[i]);
 
@@ -296,7 +293,6 @@ public class FoodDeliverySystem {
         String name;
         int price;
         boolean canAdd;
-//        boolean checkLogin ;
         do {
             System.out.println("<<Product>>");
             System.out.println("ID : ");

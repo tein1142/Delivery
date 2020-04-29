@@ -87,8 +87,18 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
     @Override
     public boolean removeProduct(int index) {
-        boolean remove = DBsystem.removeProduct(product[index-1]);
+        int k = 0;
+        Product[] temp = new Product[product.length];
+        
         product[index-1] = null;
+        for (int i = 0; i < product.length; i++) {
+            if (product[i]!= null) {
+                temp[k++] =product[i];
+            }
+        }
+        product = temp;
+
+        boolean remove = DBsystem.removeProduct(product[index-1]);
         return remove;
     }
 
@@ -138,19 +148,4 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
         return true;
     }
 
-//    public boolean showProduct(Product pord){
-//      pord.getProductId();
-//      pord.getProductName();
-//      pord.getPrice();
-//
-////        System.out.println("---Items in Library---");
-////        Iterator<Item> items = lib.iterator();
-////        int i=0;
-////        while (items.hasNext()) {
-////            System.out.println((++i) + ". " +items.next());
-////        }
-////        if(i==0) return-1; 
-////        else return i;
-//        return true;
-//    }
 }

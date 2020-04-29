@@ -32,7 +32,8 @@ public class Order {
             ex.printStackTrace();    
             System.out.println(ex.getMessage());
         }     
-    }                                    
+    } 
+    
     public static void readOrder(CartProduct cart) {         
         try (FileWriter fw = new FileWriter("order.txt");              
                 BufferedWriter bw=new BufferedWriter(fw);) {                      

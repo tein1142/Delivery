@@ -1,5 +1,6 @@
 
 import java.util.Arrays;
+import java.util.Scanner;
 import product.Product;
 
 /*
@@ -29,7 +30,7 @@ public class test {
         Product pdt3 = new Product(3,"Bubble Tea",35);
         Product pdt4 = new Product(4,"Coffee",35);
 //        Product[] Products = {pdt1,pdt2,pdt3,pdt4};
-        Product[] products = new Product[10];
+        Product[] products = new Product[5];
         
         products[0] = pdt1;
         products[1] = pdt2;
@@ -37,15 +38,23 @@ public class test {
         products[3] = pdt4;
         
         System.out.println(Arrays.toString(products));
-        System.out.println(products[1].getProductId());
-//        int in= 1;
-//        for (int i = 0; i < 2; i++) {
-//            if (in == products[in].getProductId()) {
-//                products[in++] = null;
-//                System.out.println("HooRay");
-//                }
-//            }
+//        System.out.println(products[1].getProductId());
+
+        Product[] temp = new Product[products.length];
         
-        System.out.println(Arrays.toString(products));
+        Scanner sc = new Scanner(System.in);
+        System.out.println("-----");
+        int index = sc.nextInt();
+        
+        int k = 0;
+        products[index-1] = null;
+        for (int i = 0; i < products.length; i++) {
+            if (products[i]!= null) {
+                temp[k++] =products[i];
+            }
+        }
+        
+       
+        System.out.println(Arrays.toString(temp));
     }
 }
