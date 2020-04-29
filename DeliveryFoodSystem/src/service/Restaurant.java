@@ -28,7 +28,6 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     private int countProduct = 0;
 
     public Restaurant(String restaurantName, String location, int maxProduct) {
-//        this.product = new Product[maxProduct];
         this.product = DBsystem.showProductDB();
         countProduct = DBsystem.showProductDB().length;
         this.restaurantName = restaurantName;

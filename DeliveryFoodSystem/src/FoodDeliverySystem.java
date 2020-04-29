@@ -25,7 +25,7 @@ import user.CustomerAccount;
  */
 public class FoodDeliverySystem {
 
-    private DatabaseSystem testDB;
+//    private DatabaseSystem testDB;
     private AdminAccount testAdmin;
     private CustomerAccount testCustomer;
     private Product[] testProduct;
@@ -34,23 +34,16 @@ public class FoodDeliverySystem {
     private Restaurant testRestuarant;
     private static final Scanner sc = new Scanner(System.in);
 
-    public FoodDeliverySystem(String resName, String resLocation, Product[] testProduct, AdminAccount admin) {
+    public FoodDeliverySystem(String resName, String resLocation, AdminAccount admin) {
         this.testRestuarant = new Restaurant(resName, resLocation, 10);
+        this.testProduct = testRestuarant.getProduct();
         this.testAdmin = admin;
-        this.testProduct = testProduct;
     }
 
     public static void main(String[] args) {
-        Product pdt1 = new Product(1, "Soup", 40);
-        Product pdt2 = new Product(2, "Pizza", 105);
-        Product pdt3 = new Product(3, "Bubble Tea", 35);
-        Product pdt4 = new Product(4, "Coffee", 35);
-
-        Product[] Products = {pdt1, pdt2, pdt3, pdt4};
-
         PersonProfile person = new PersonProfile("tein1142", "BNK", "0874444444");
         AdminAccount admin = new AdminAccount("username", "pass", person);
-        FoodDeliverySystem system = new FoodDeliverySystem("Tein Res&Bar", "BNK", Products, admin);
+        FoodDeliverySystem system = new FoodDeliverySystem("Tein Res&Bar", "BNK",admin);
 
         system.signIn();
 
@@ -72,7 +65,8 @@ public class FoodDeliverySystem {
                     break;
 
                 case 1:
-                    signInAdmin();
+//                    signInAdmin();
+                    adminMenu();
                     break;
 
                 case 2:
@@ -218,16 +212,14 @@ public class FoodDeliverySystem {
                 case 2:
 
                     showProduct();
-                    System.out.println("----------Select Number for delete----------");
-                    index = sc.nextInt();
-                    testRestuarant.removeProduct(index);
+                    removeProduct();
 
                     break;
                 case 3:
                     showProduct();
                     break;
                 case 4:
-//                    setPriceProduct();
+                    setPriceProduct();
                     break;
 
             }
@@ -285,7 +277,6 @@ public class FoodDeliverySystem {
 
             }
         }
-//            System.out.println(Arrays.toString(testRestuarant.getProduct()));
     }
 
     private void addProduct() {
@@ -306,6 +297,22 @@ public class FoodDeliverySystem {
             canAdd = testRestuarant.addProduct(prod);
         } while (canAdd != true);
         System.out.println("----------Added Complete----------");
+    }
+
+    private void setPriceProduct() {
+        System.out.println("Enter Number Set Price Product:");
+        int choose = sc.nextInt();
+        System.out.println("Enter Price Product:");
+        int price = sc.nextInt();
+        testRestuarant.setPriceProduct(testProduct[choose-1], price);
+        System.out.println("-------------Set Price Complete-----------");
+    }
+
+    private void removeProduct() {
+        System.out.println("Enter Number Remove Product:");
+        int choose = sc.nextInt(); sc.nextLine();
+        testRestuarant.removeProduct(choose);
+        System.out.println("-------------Removed Complete-----------");
     }
 
 }

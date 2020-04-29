@@ -17,8 +17,8 @@ public class ShoppingCart {
     private int totalPrice;
     private int countProductInCart =0;
 
-    public ShoppingCart(int maxCart) {
-        cart = new CartProduct[maxCart];
+    public ShoppingCart() {
+        cart = new CartProduct[10];
     }
 
 
