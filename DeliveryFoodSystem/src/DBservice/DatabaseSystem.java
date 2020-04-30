@@ -36,14 +36,8 @@ public class DatabaseSystem {
         System.out.println(product.length);
 //        System.out.println(showProductDB().length);
         System.out.println(Arrays.toString(product));
-//        ConnectDB();
-//    System.out.println(loginDB("tein114", "1234"));
-//       System.out.println(registerDB("zunisa", "1234", "zunisa", "bnk", "48"));
-//        System.out.println(getPersonFromDB("tein1142", "1234"));
-//        CustomerAccount cus = new CustomerAccount("tein1142", "1234",getPersonFromDB("tein1142", "1234"));
-//        PersonProfile pr = new PersonProfile("a", "b", "c");
-//        Account ac = new CustomerAccount("un", "pass", pr);
-//        showItemDB();
+
+        showProductDB();
 
     }
 
@@ -165,6 +159,8 @@ public class DatabaseSystem {
 //                        System.out.println("Failed");
 //                        return false;
 //                    }
+        System.out.println("Product " + prod);
+        System.out.println("ID " + prod.getProductId());
         int idproduct = prod.getProductId();
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
@@ -188,12 +184,14 @@ public class DatabaseSystem {
 
     }
 
+
     public void setPriceDB(Product prod, int price) {
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
             stm.executeUpdate("update compro.product set product_price = "+price+" where idproduct = "+prod.getProductId()+" ");
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+//            Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

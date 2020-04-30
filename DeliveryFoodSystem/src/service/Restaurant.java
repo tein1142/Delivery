@@ -28,6 +28,8 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     private int countProduct = 0;
 
     public Restaurant(String restaurantName, String location, int maxProduct) {
+        this.DBsystem = new DatabaseSystem();
+        
         this.product = DBsystem.showProductDB();
         countProduct = DBsystem.showProductDB().length;
         this.restaurantName = restaurantName;
@@ -90,29 +92,31 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
     @Override
     public boolean removeProduct(int index) {
-        product[index-1] = null;
+//        DBsystem = new DatabaseSystem();
+        boolean remove = DBsystem.removeProduct(product[index-1]);
         
+        product[index-1] = null;
+        int k = 0;
         Product[] temp = new Product[product.length];
         for (int i = 0; i < product.length; i++) {
             if (product[i]!= null) {
-                int k = 0;
+                
                 temp[k++] =product[i];
             }
         }
         product = temp;
-
-        boolean remove = DBsystem.removeProduct(product[index-1]);
         return remove;
     }
 
     @Override
-    public boolean setPriceProduct(/*AdminAccount admin,*/Product prod, int price) {
+    public boolean setPriceProduct(Product prod, int price) {
         for (int i = 0; i < product.length; i++) {
             if (product[i].equals(prod)) {
                 product[i].setPrice(price);
-                DBsystem.setPriceDB(prod,price);
             }
         }
+        DBsystem.setPriceDB(prod,price);
+        
         return true;
     }
 

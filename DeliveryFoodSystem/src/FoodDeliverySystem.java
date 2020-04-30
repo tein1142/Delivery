@@ -65,8 +65,8 @@ public class FoodDeliverySystem {
                     break;
 
                 case 1:
-                    signInAdmin();
-//                    adminMenu();
+//                    signInAdmin();
+                    adminMenu();
                     break;
 
                 case 2:
@@ -244,38 +244,27 @@ public class FoodDeliverySystem {
                     break;
                 case 1:
                     showCart();
-                    addProductToCart();
+//                    addProductToCart();
                     break;
                 case 2:
 //                    removeProductFormCart();
                     break;
                 case 3:
-                    checkPriceFormCart();
+//                    checkPriceFormCart();
                     break;
                 case 4:
-                    checkoutOrder();
+//                    checkoutOrder();
                     break;
 
             }
         } while (menuId != 0);
     }
 
-   
-
-    private void addProductToCart() {
-        showProduct();
-        System.out.println("Enter product Id: ");
-        int choose = sc.nextInt();
-        System.out.println("Enter amount : ");
-        int quantity = sc.nextInt();
-        this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
-    }
-
     private void showProduct() {
-        Product[] prod = testRestuarant.getProduct();
-        for (int i = 0; i < prod.length; i++) {
-            if (prod[i] != null) {
-                System.out.println((i + 1) + ". " + prod[i]);
+        testProduct = testRestuarant.getProduct();
+        for (int i = 0; i < testProduct.length; i++) {
+            if (testProduct[i] != null) {
+                System.out.println((i + 1) + ". " + testProduct[i]);
 
             }
         }
@@ -299,7 +288,6 @@ public class FoodDeliverySystem {
             canAdd = testRestuarant.addProduct(prod);
         } while (canAdd != true);
         System.out.println("----------Added Complete----------");
-        showCart();
     }
 
     private void setPriceProduct() {
@@ -313,11 +301,20 @@ public class FoodDeliverySystem {
 
     private void removeProduct() {
         System.out.println("Enter Number Remove Product:");
-        int choose = sc.nextInt();
-        testRestuarant.removeProduct(choose);
+        int index = sc.nextInt();
+        testRestuarant.removeProduct(index);
         System.out.println("-------------Removed Complete-----------");
     }
-
+    
+//     private void addProductToCart() {
+//        showProduct();
+//        System.out.println("Enter product Id: ");
+//        int choose = sc.nextInt();
+//        System.out.println("Enter amount : ");
+//        int quantity = sc.nextInt();
+//        this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
+//    }
+     
     /*private void removeProductFormCart() {
         showCart();
         System.out.println("Enter product Id: ");
@@ -335,15 +332,15 @@ public class FoodDeliverySystem {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
 
-    private void checkPriceFormCart() {
-        showCart();
-        testRestuarant.checkPriceFormCart();
-    }
-
-    private void checkoutOrder() {
-        showCart();
-
-    }
+//    private void checkPriceFormCart() {
+//        showCart();
+//        testRestuarant.checkPriceFormCart();
+//    }
+//
+//    private void checkoutOrder() {
+//        showCart();
+//
+//    }
 
     private void/*ShoppingCart*/ showCart() {
 //        ShoppingCart cart = testRestuarant.getShoppingCartFromCustomer();
