@@ -7,9 +7,9 @@ import java.util.Arrays;
 import person.PersonProfile;
 import product.Product;
 import service.Restaurant;
-import user.Account;
-import user.AdminAccount;
-import user.CustomerAccount;
+import acc.Account;
+import acc.AdminAccount;
+import acc.CustomerAccount;
 //<<<<<<< HEAD
 //test
 
@@ -246,7 +246,7 @@ public class FoodDeliverySystem {
                     addProductToCart();
                     break;
                 case 2:
-//                    removeProductFormCart();//into DB
+//                    removeProductFormCart();
                     break;
                 case 3:
 //                    checkPriceFormCart();

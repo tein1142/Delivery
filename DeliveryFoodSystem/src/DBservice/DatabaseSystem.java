@@ -15,8 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import person.PersonProfile;
 import product.Product;
-import user.Account;
-import user.CustomerAccount;
+import acc.Account;
+import acc.CustomerAccount;
 
 /**
  *
@@ -188,6 +188,10 @@ public class DatabaseSystem {
             Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
         } 
        
+    }
+
+    public void setPriceDB(Product prod, int price) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

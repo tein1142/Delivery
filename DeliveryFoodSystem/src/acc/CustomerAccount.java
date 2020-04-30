@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package user;
+package acc;
 
 import person.PersonProfile;
 import java.beans.Customizer;
@@ -16,7 +16,7 @@ import service.CustomerService;
 
 
 public class CustomerAccount extends Account{
-    private ShoppingCart[] cart;
+    private ShoppingCart shopcart;
 
     public CustomerAccount(Account account) {
         super(account);
@@ -27,7 +27,7 @@ public class CustomerAccount extends Account{
     }
     
     public ShoppingCart addProductToCart(Product prod, int quantity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        shopcart.addProdToCart(prod, quantity);
     }
 
 

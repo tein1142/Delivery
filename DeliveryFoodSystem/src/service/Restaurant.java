@@ -6,9 +6,9 @@ import cart.order.Order;
 import cart.order.ShoppingCart;
 import person.PersonProfile;
 import product.Product;
-import user.Account;
-import user.AdminAccount;
-import user.CustomerAccount;
+import acc.Account;
+import acc.AdminAccount;
+import acc.CustomerAccount;
 
 enum RestaurantStatus {
     OPEN, CLOSE
@@ -106,6 +106,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
         for (int i = 0; i < product.length; i++) {
             if (product[i].equals(prod)) {
                 product[i].setPrice(price);
+                DBsystem.setPriceDB(prod,price);
             }
         }
         return true;

@@ -5,7 +5,7 @@
  */
 package service;
 
-import user.Account;
+import acc.Account;
 
 /**
  *

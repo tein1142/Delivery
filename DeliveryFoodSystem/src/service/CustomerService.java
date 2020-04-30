@@ -8,7 +8,7 @@ package service;
 import cart.order.Order;
 import cart.order.ShoppingCart;
 import product.Product;
-import user.CustomerAccount;
+import acc.CustomerAccount;
 
 public interface CustomerService {
     abstract public ShoppingCart addProductToCart(Product prod, int quantity);
