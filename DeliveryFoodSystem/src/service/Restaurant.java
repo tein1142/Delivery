@@ -20,7 +20,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     private String restaurantName;
     private String location;
     private Product[] product;
-    private ShoppingCart shopCart;
+//    private ShoppingCart shopCart;
     private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
@@ -46,22 +46,26 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
         return product;
     }
 
+    public ShoppingCart getShoppingFromCustomer() {
+        return customer.getMyShoppingCart();
+    }
+
 //    CustomerService
     @Override
     public ShoppingCart addProductToCart(Product prod, int quantity) {
-        shopCart.addProdToCart(prod, quantity);
-        return shopCart;
+        customer.addProductToCart(prod, quantity);
+        return customer.getMyShoppingCart();
     }
 
     @Override
     public ShoppingCart removeProductFormCart(Product prod) {
-        shopCart.removeProdFromCart(prod);
-        return shopCart;
+        customer.removeProductFormCart(prod);
+        return customer.getMyShoppingCart();
     }
 
     @Override
-    public int checkPriceFormCart(ShoppingCart cart) {
-        return shopCart.getTotalPrice();
+    public int checkPriceFormCart() {
+        return customer.checkPriceFormCart();
     }
 
     @Override
@@ -71,7 +75,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
     //Admin sservice
     @Override
-    public boolean addProduct(/*AdminAccount admin,*/Product prod) {
+    public boolean addProduct(Product prod) {
         if (countProduct >= product.length) {
             Product[] temp = new Product[product.length + 10];
             for (int i = 0; i < product.length; i++) {
@@ -86,12 +90,12 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
     @Override
     public boolean removeProduct(int index) {
-        int k = 0;
-        Product[] temp = new Product[product.length];
-        
         product[index-1] = null;
+        
+        Product[] temp = new Product[product.length];
         for (int i = 0; i < product.length; i++) {
             if (product[i]!= null) {
+                int k = 0;
                 temp[k++] =product[i];
             }
         }

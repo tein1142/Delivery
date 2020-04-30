@@ -29,7 +29,7 @@ public class FoodDeliverySystem {
     private AdminAccount testAdmin;
     private CustomerAccount testCustomer;
     private Product[] testProduct;
-    private ShoppingCart[] cart;
+//    private ShoppingCart[] cart;
 //    private Order[] testOrder;
     private Restaurant testRestuarant;
     private static final Scanner sc = new Scanner(System.in);
@@ -242,17 +242,17 @@ public class FoodDeliverySystem {
                 case 0:
                     break;
                 case 1:
-                    showProduct();
+                    showCart();
                     addProductToCart();
                     break;
                 case 2:
-//                    removeProductFormCart();
+                    removeProductFormCart();
                     break;
                 case 3:
-//                    checkPriceFormCart();
+                    checkPriceFormCart();
                     break;
                 case 4:
-//                    checkoutOrder();
+                    checkoutOrder();
                     break;
 
             }
@@ -262,6 +262,7 @@ public class FoodDeliverySystem {
    
 
     private void addProductToCart() {
+        showProduct();
         System.out.println("Enter product Id: ");
         int choose = sc.nextInt();
         System.out.println("Enter amount : ");
@@ -313,6 +314,50 @@ public class FoodDeliverySystem {
         int choose = sc.nextInt(); sc.nextLine();
         testRestuarant.removeProduct(choose);
         System.out.println("-------------Removed Complete-----------");
+    }
+
+    private void removeProductFormCart() {
+        showProduct();
+        System.out.println("Enter product Id: ");
+        int choose = sc.nextInt();
+        for (int i = 0; i < testProduct.length; i++) {
+//            testCustomer.getMyShoppingCart().getProductFromCart()[choose].getProd().getProductId()==choose;
+            if (testCustomer.getMyShoppingCart().getProductFromCart()[choose].getProd().getProductId()== choose) {
+                
+            }
+            Product product = testProduct[i];
+            
+        }
+        this.testRestuarant.removeProductFormCart(prod);
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void checkPriceFormCart() {
+        showProduct();
+
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void checkoutOrder() {
+        showProduct();
+
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private ShoppingCart showCart() {
+        ShoppingCart cart = testRestuarant.getShoppingFromCustomer();
+        if(cart ==null) {
+            System.out.println("No Product In Cart!");
+            return null;
+        }
+            
+//        for (int i = 0; i < myList.length; i++) { 
+//            if (myList[i] != null) {
+//                System.out.println((i+1) + ". "+myList[i].toString());
+//            }
+//        }
+        return cart;
     }
 
 }

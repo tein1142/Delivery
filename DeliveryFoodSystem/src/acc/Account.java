@@ -64,6 +64,6 @@ public abstract class Account {
     
      @Override
     public String toString() {
-        return "Account{" + "username=" + username + ", password=" + password + ", loginStatus=" + loginStatus + ", person=" + person + '}';
+        return "Account{" + "username=" + username + ", person=" + person + '}';
     }
 }

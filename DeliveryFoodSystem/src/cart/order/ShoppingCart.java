@@ -13,16 +13,16 @@ import service.CustomerService;
  * @author tanaw
  */
 public class ShoppingCart {
+
     private CartProduct[] cart;
     private int totalPrice;
-    private int countProductInCart =0;
+    private int countProductInCart = 0;
 
     public ShoppingCart() {
         cart = new CartProduct[10];
     }
 
-
-    public CartProduct[] showProdFromCart() {
+    public CartProduct[] getProductFromCart() {
         return cart;
     }
 
@@ -30,38 +30,47 @@ public class ShoppingCart {
         return totalPrice;
     }
 
-    public boolean addProdToCart(Product prod, int quantity){
+    public void addProdToCart(Product prod, int quantity) {
         cart[countProductInCart++] = new CartProduct(prod, quantity);
-        return true;
-    }
-    
-    public boolean removeProdFromCart(Product prod){
-        for (int i = 0; i < cart.length; i++) {
-            if (cart[i].getProd().equals(prod)) {
-                cart[i] = null;
-            }
-            return true;
-        }
-        return false;
-    }
-    
-    public void checkOut(){
-        
-    }
-    
-    public int calTotalPrice(){
-        for (int i = 0; i < cart.length; i++) {
-                totalPrice += cart[i].getCartPrice();
-        }
-        return totalPrice;
     }
 
-    
+    public void removeProdFromCart(Product prod) {
+        for (int j = 0; j < cart.length; j++) {
+            if (cart[j].getProd().equals(prod)) {
+                cart[j] = null;
+            }
+        }
+        CartProduct[] temp = new CartProduct[cart.length];
+        
+        for (int i = 0; i < cart.length; i++) {
+            if (cart[i]!= null) {
+                int k =0;
+                temp[k++] =cart[i];
+            }
+        }
+        cart = temp;
+        countProductInCart--;
+    }
+
+    public void checkOut() {
+
+    }
+
+    public void calTotalPrice() {
+        for (int i = 0; i < cart.length; i++) {
+            totalPrice += cart[i].getCartPrice();
+        }
+    }
+
     @Override
     public String toString() {
-        return "ShoppingCart{" + "cart=" + cart + ", totalPrice=" + totalPrice +  '}';
+        StringBuilder shopcartString = new StringBuilder();
+        shopcartString.append(super.toString());
+        shopcartString.append(" shopCart { ");
+        for (int i = 0; i < cart.length; i++) {
+            shopcartString.append(cart[i] + "}\n");
+        }
+        return shopcartString.toString();
     }
-    
-  
-    
+
 }

@@ -24,20 +24,28 @@ public class CustomerAccount extends Account{
 
     public CustomerAccount(String username, String password, PersonProfile person) {
         super(username, password, person);
+        this.shopcart = new ShoppingCart();
     }
     
-    public ShoppingCart addProductToCart(Product prod, int quantity) {
+    public ShoppingCart getMyShoppingCart() {
+          return shopcart;
+    }
+    
+    public boolean addProductToCart(Product prod, int quantity) {
         shopcart.addProdToCart(prod, quantity);
+        return true;
     }
 
 
-    public boolean removeProductFormCart(Product prod, ShoppingCart cart) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean removeProductFormCart(Product prod) {
+        shopcart.removeProdFromCart(prod);
+        return true;
     }
 
 
-    public int checkPriceFormCart(ShoppingCart cart) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int checkPriceFormCart() {
+        shopcart.calTotalPrice();
+        return shopcart.getTotalPrice();
     }
 
 
