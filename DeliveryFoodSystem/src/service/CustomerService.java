@@ -9,10 +9,11 @@ import cart.order.Order;
 import cart.order.ShoppingCart;
 import product.Product;
 import acc.CustomerAccount;
+import cart.order.SlotCart;
 
 public interface CustomerService {
     abstract public ShoppingCart addProductToCart(Product prod, int quantity);
-    abstract public ShoppingCart removeProductFormCart(Product prod);
+    abstract public ShoppingCart removeProductFormCart(SlotCart slot);
     abstract public int checkPriceFormCart();
     abstract public Order checkoutOrder(ShoppingCart cart, CustomerAccount customer);//print bill from cart.
 

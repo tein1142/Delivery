@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import product.Product;  
 /**  *  * @author tanaw  */ 
 public class Order {         
-    public static void writeOrder(CartProduct cart) {         
+    public static void writeOrder(SlotCart cart) {         
         try (FileWriter fw = new FileWriter("order.txt");              
                 BufferedWriter bw=new BufferedWriter(fw);) {                      
             bw.write("ProductID:"+cart.getProd().getProductId()+
@@ -34,7 +34,7 @@ public class Order {
         }     
     } 
     
-    public static void readOrder(CartProduct cart) {         
+    public static void readOrder(SlotCart cart) {         
         try (FileWriter fw = new FileWriter("order.txt");              
                 BufferedWriter bw=new BufferedWriter(fw);) {                      
             bw.write("ProductID:"+cart.getProd().getProductId()+
@@ -54,8 +54,8 @@ public class Order {
     }                                    
     public static void main(String[] args) {         
         Product p = new Product(131,"Mooknin",20);         
-        CartProduct cart = new CartProduct(p, 5);
-        ShoppingCart sp = new ShoppingCart(5);
+        SlotCart cart = new SlotCart(p, 5);
+//        ShoppingCart sp = new ShoppingCart(5);
         
         
         System.out.println(cart.getCartPrice());

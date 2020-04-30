@@ -14,15 +14,15 @@ import service.CustomerService;
  */
 public class ShoppingCart {
 
-    private CartProduct[] cart;
+    private SlotCart[] cart;
     private int totalPrice=0;
     private int countProductInCart = 0;
 
     public ShoppingCart() {
-        cart = new CartProduct[10];
+        cart = new SlotCart[10];
     }
 
-    public CartProduct[] getCartFromShoppingCart() {
+    public SlotCart[] getCartFromShoppingCart() {
         return cart;
     }
 
@@ -31,20 +31,24 @@ public class ShoppingCart {
     }
 
     public void addProdToCart(Product prod, int quantity) {
-        cart[countProductInCart++] = new CartProduct(prod, quantity);
+        cart[countProductInCart++] = new SlotCart(prod, quantity);
     }
 
-    public void removeProdFromCart(Product prod) {
+    public void removeSlotFromCart(SlotCart slot) {
         for (int j = 0; j < cart.length; j++) {
-            if (cart[j].getProd().equals(prod)) {
+            if (cart[j]!= null) { 
+                if (cart[j].equals(slot)) {
+                System.out.println("ShCart "+slot);
                 cart[j] = null;
+                }
             }
+            
         }
-        CartProduct[] temp = new CartProduct[cart.length];
-        
+        SlotCart[] temp = new SlotCart[cart.length];
+        int k =0;
         for (int i = 0; i < cart.length; i++) {
             if (cart[i]!= null) {
-                int k =0;
+                
                 temp[k++] =cart[i];
             }
         }
@@ -57,18 +61,22 @@ public class ShoppingCart {
     }
 
     public void calTotalPrice() {
+        int cal = 0;
         for (int i = 0; i < cart.length; i++) {
-            totalPrice += cart[i].getCartPrice();
+            if (cart[i]!= null) {
+                cal += cart[i].getCartPrice();
+            }
         }
+        totalPrice = cal;
     }
 
     @Override
     public String toString() {
         StringBuilder shopcartString = new StringBuilder();
-        shopcartString.append(super.toString());
-        shopcartString.append(" shopCart { ");
+//        shopcartString.append(super.toString());
+        shopcartString.append(" shopCart :\n");
         for (int i = 0; i < cart.length; i++) {
-            shopcartString.append(cart[i] + "}\n");
+            shopcartString.append(cart[i] + "\n");
         }
         return shopcartString.toString();
     }

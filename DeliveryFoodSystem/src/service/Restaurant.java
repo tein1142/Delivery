@@ -9,6 +9,7 @@ import product.Product;
 import acc.Account;
 import acc.AdminAccount;
 import acc.CustomerAccount;
+import cart.order.SlotCart;
 
 enum RestaurantStatus {
     OPEN, CLOSE
@@ -20,7 +21,6 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     private String restaurantName;
     private String location;
     private Product[] product;
-//    private ShoppingCart shopCart;
     private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
@@ -60,8 +60,9 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     }
 
     @Override
-    public ShoppingCart removeProductFormCart(Product prod) {
-        customer.removeProductFormCart(prod);
+    public ShoppingCart removeProductFormCart(SlotCart slot) {
+        System.out.println("Res "+slot);
+        customer.removeProductFormCart(slot);
         return customer.getMyShoppingCart();
     }
 
@@ -92,7 +93,6 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
     @Override
     public boolean removeProduct(int index) {
-//        DBsystem = new DatabaseSystem();
         boolean remove = DBsystem.removeProduct(product[index-1]);
         
         product[index-1] = null;

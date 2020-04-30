@@ -65,8 +65,8 @@ public class FoodDeliverySystem {
                     break;
 
                 case 1:
-//                    signInAdmin();
-                    adminMenu();
+                    signInAdmin();
+//                    adminMenu();
                     break;
 
                 case 2:
@@ -95,6 +95,9 @@ public class FoodDeliverySystem {
                     break;
                 case 1:
                     loginAdmin();
+                    showCart();
+//                            showCart();
+//                                    showCart();
                     break;
                 case 2:
                     registerCustomer();
@@ -233,8 +236,9 @@ public class FoodDeliverySystem {
             System.out.println("<<Customer Menu>>");
             System.out.println("1. Select Product");//{show basket(), addProduct, removeProduct}
             System.out.println("2. Remove Product Form Cart");
-            System.out.println("3. check Price Form Cart");
-            System.out.println("4. checkout Order");
+            System.out.println("3. show Cart");
+            System.out.println("4. check Price Form Cart");
+            System.out.println("5. checkout Order");
 
             System.out.println("0. Exit ");
             System.out.println("Enter your menu [0-3]: ");
@@ -244,15 +248,19 @@ public class FoodDeliverySystem {
                     break;
                 case 1:
                     showCart();
-//                    addProductToCart();
+                    addProductToCart();
                     break;
                 case 2:
-//                    removeProductFormCart();
+                    showCart();
+                    removeProductFormCart();
                     break;
                 case 3:
-//                    checkPriceFormCart();
+                    showCart();
                     break;
                 case 4:
+                    checkPriceFormCart();
+                    break;
+                case 5:
 //                    checkoutOrder();
                     break;
 
@@ -261,6 +269,7 @@ public class FoodDeliverySystem {
     }
 
     private void showProduct() {
+        System.out.println("Product : ");
         testProduct = testRestuarant.getProduct();
         for (int i = 0; i < testProduct.length; i++) {
             if (testProduct[i] != null) {
@@ -306,63 +315,46 @@ public class FoodDeliverySystem {
         System.out.println("-------------Removed Complete-----------");
     }
     
-//     private void addProductToCart() {
-//        showProduct();
-//        System.out.println("Enter product Id: ");
-//        int choose = sc.nextInt();
-//        System.out.println("Enter amount : ");
-//        int quantity = sc.nextInt();
-//        this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
-//    }
-     
-    /*private void removeProductFormCart() {
-        showCart();
+     private void addProductToCart() {
+        showProduct();
         System.out.println("Enter product Id: ");
         int choose = sc.nextInt();
+        System.out.println("Enter amount : ");
+        int quantity = sc.nextInt();
+        this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
+    }
+     
+    private void removeProductFormCart() {
+        System.out.println("Enter Number Remove Product From Cart: ");
+        int choose = sc.nextInt();
+//        testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose-1];
+        System.out.println("error "+testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose-1]);
+        
+        testRestuarant.removeProductFormCart(testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose-1]);
+        System.out.println("------ Removed ------");
+//        testCustomer.getMyShoppingCart().removeSlotFromCart(testCustomer.getMyShoppingCart().getCartFromShoppingCart()[choose-1]);
+            
+            
+    }
+
+    private void checkPriceFormCart() {
+        System.out.println("Total Price : " +testRestuarant.checkPriceFormCart() + " Bath");
+    }
+
+    private void checkoutOrder() {
+        showCart();
+
+    }
+
+    private void showCart() {
+//        System.out.println(this.testRestuarant.getShoppingCartFromCustomer());
+        System.out.println("Shopping Cart : ");
         for (int i = 0; i < testProduct.length; i++) {
-//            testCustomer.getMyShoppingCart().getProductFromCart()[choose].getProd().getProductId()==choose;
-            if (testCustomer.getMyShoppingCart().getProductFromCart()[choose].getProd().getProductId()== choose) {
-                
+            if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]!= null) {
+                System.out.println((i +1)+ ". " + testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]);
             }
-            Product product = testProduct[i];
             
         }
-        this.testRestuarant.removeProductFormCart(prod);
-        
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
-
-//    private void checkPriceFormCart() {
-//        showCart();
-//        testRestuarant.checkPriceFormCart();
-//    }
-//
-//    private void checkoutOrder() {
-//        showCart();
-//
-//    }
-
-    private void/*ShoppingCart*/ showCart() {
-//        ShoppingCart cart = testRestuarant.getShoppingCartFromCustomer();
-//        if(cart ==null) {
-            System.out.println("No Product In Cart!");
-//            return null;
-//        }
-        
-//        Product[] prod = testRestuarant.getProduct();
-//        for (int i = 0; i < prod.length; i++) {
-//            if (prod[i] != null) {
-//                System.out.println((i + 1) + ". " + prod[i]);
-//
-//            }
-//        }
-            
-//        for (int i = 0; i < myList.length; i++) { 
-//            if (myList[i] != null) {
-//                System.out.println((i+1) + ". "+myList[i].toString());
-//            }
-//        }
-//        return cart;
     }
 
 }

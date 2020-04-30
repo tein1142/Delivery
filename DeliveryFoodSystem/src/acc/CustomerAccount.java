@@ -10,6 +10,7 @@ import java.beans.Customizer;
 import java.util.Scanner;
 import cart.order.Order;
 import cart.order.ShoppingCart;
+import cart.order.SlotCart;
 import product.Product;
 import service.AdminService;
 import service.CustomerService;
@@ -37,8 +38,9 @@ public class CustomerAccount extends Account{
     }
 
 
-    public boolean removeProductFormCart(Product prod) {
-        shopcart.removeProdFromCart(prod);
+    public boolean removeProductFormCart(SlotCart slot) {
+        System.out.println("Cus "+slot);
+        shopcart.removeSlotFromCart(slot);
         return true;
     }
 

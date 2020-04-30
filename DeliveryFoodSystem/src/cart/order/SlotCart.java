@@ -11,16 +11,16 @@ import product.Product;
  *
  * @author tanaw
  */
-public class CartProduct {
+public class SlotCart {
 
     private Product prod;
     private int quantity;
     private int cartPrice;
 
-    public CartProduct() {
+    public SlotCart() {
     }
 
-    public CartProduct(Product prod, int quantity) {
+    public SlotCart(Product prod, int quantity) {
         this.prod = prod;
         this.quantity = quantity;
         this.cartPrice = prod.getPrice() * quantity;
@@ -38,17 +38,23 @@ public class CartProduct {
         return quantity;
     }
 
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    
+
 //    @Override
 //    public String toString() {
-//        return "CartProduct{" + "prod=" + prod + ", quantity=" + quantity + ", cartPrice=" + cartPrice + '}';
+//        return "SlotCart{" + "prod=" + prod + ", quantity=" + quantity + ", cartPrice=" + cartPrice + '}';
 //    }
     @Override
     public String toString() {
         StringBuilder cartString = new StringBuilder();
-        cartString.append(super.toString());
-        cartString.append("CartProduct{" + " Product "+ prod);
-        cartString.append("\t" +"Quantity" + quantity);
-        cartString.append("\t" +"Price "+cartPrice +" }");
+//        cartString.append(super.toString());
+        cartString.append("CartProduct{" + prod);
+        cartString.append("\t" +"Quantity :" + quantity);
+        cartString.append("\t" +"Price :"+cartPrice +" }");
         /* bookString.append(", publisher=" + publisher);
         for (int i = 0; i < authors.length; i++) {
             bookString.append(authors[i] + "}");
