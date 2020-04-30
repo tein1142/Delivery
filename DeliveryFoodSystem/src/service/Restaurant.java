@@ -46,7 +46,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
         return product;
     }
 
-    public ShoppingCart getShoppingFromCustomer() {
+    public ShoppingCart getShoppingCartFromCustomer() {
         return customer.getMyShoppingCart();
     }
 

@@ -65,12 +65,13 @@ public class FoodDeliverySystem {
                     break;
 
                 case 1:
-//                    signInAdmin();
-                    adminMenu();
+                    signInAdmin();
+//                    adminMenu();
                     break;
 
                 case 2:
                     signInCustomer();
+//                    customerMenu();
                     break;
 
             }
@@ -202,12 +203,12 @@ public class FoodDeliverySystem {
             System.out.println("0. Exit ");
             System.out.println("Enter your menu [0-4]: ");
             menuId = sc.nextInt();
-            int index;
             switch (menuId) {
                 case 0:
                     break;
                 case 1:
                     addProduct();
+                    showProduct();
                     break;
                 case 2:
 
@@ -246,7 +247,7 @@ public class FoodDeliverySystem {
                     addProductToCart();
                     break;
                 case 2:
-                    removeProductFormCart();
+//                    removeProductFormCart();
                     break;
                 case 3:
                     checkPriceFormCart();
@@ -298,6 +299,7 @@ public class FoodDeliverySystem {
             canAdd = testRestuarant.addProduct(prod);
         } while (canAdd != true);
         System.out.println("----------Added Complete----------");
+        showCart();
     }
 
     private void setPriceProduct() {
@@ -311,13 +313,13 @@ public class FoodDeliverySystem {
 
     private void removeProduct() {
         System.out.println("Enter Number Remove Product:");
-        int choose = sc.nextInt(); sc.nextLine();
+        int choose = sc.nextInt();
         testRestuarant.removeProduct(choose);
         System.out.println("-------------Removed Complete-----------");
     }
 
-    private void removeProductFormCart() {
-        showProduct();
+    /*private void removeProductFormCart() {
+        showCart();
         System.out.println("Enter product Id: ");
         int choose = sc.nextInt();
         for (int i = 0; i < testProduct.length; i++) {
@@ -331,33 +333,39 @@ public class FoodDeliverySystem {
         this.testRestuarant.removeProductFormCart(prod);
         
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 
     private void checkPriceFormCart() {
-        showProduct();
-
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        showCart();
+        testRestuarant.checkPriceFormCart();
     }
 
     private void checkoutOrder() {
-        showProduct();
+        showCart();
 
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private ShoppingCart showCart() {
-        ShoppingCart cart = testRestuarant.getShoppingFromCustomer();
-        if(cart ==null) {
+    private void/*ShoppingCart*/ showCart() {
+//        ShoppingCart cart = testRestuarant.getShoppingCartFromCustomer();
+//        if(cart ==null) {
             System.out.println("No Product In Cart!");
-            return null;
-        }
+//            return null;
+//        }
+        
+//        Product[] prod = testRestuarant.getProduct();
+//        for (int i = 0; i < prod.length; i++) {
+//            if (prod[i] != null) {
+//                System.out.println((i + 1) + ". " + prod[i]);
+//
+//            }
+//        }
             
 //        for (int i = 0; i < myList.length; i++) { 
 //            if (myList[i] != null) {
 //                System.out.println((i+1) + ". "+myList[i].toString());
 //            }
 //        }
-        return cart;
+//        return cart;
     }
 
 }

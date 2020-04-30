@@ -15,14 +15,14 @@ import service.CustomerService;
 public class ShoppingCart {
 
     private CartProduct[] cart;
-    private int totalPrice;
+    private int totalPrice=0;
     private int countProductInCart = 0;
 
     public ShoppingCart() {
         cart = new CartProduct[10];
     }
 
-    public CartProduct[] getProductFromCart() {
+    public CartProduct[] getCartFromShoppingCart() {
         return cart;
     }
 
