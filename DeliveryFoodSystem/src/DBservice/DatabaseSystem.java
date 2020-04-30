@@ -24,17 +24,16 @@ import acc.CustomerAccount;
  */
 public class DatabaseSystem {
 
-
     public static void main(String[] args) {
         Product test = new Product(5, "sus", 100);
-        Product[] product ;
+        Product[] product;
 //        addProdToDB(test);
         product = new Product[10];
         product = showProductDB();
         System.out.println(product.length);
-                System.out.println(Arrays.toString(product));
-         product = new Product[product.length+10];
-         System.out.println(product.length);
+        System.out.println(Arrays.toString(product));
+        product = new Product[product.length + 10];
+        System.out.println(product.length);
 //        System.out.println(showProductDB().length);
         System.out.println(Arrays.toString(product));
 //        ConnectDB();
@@ -45,10 +44,8 @@ public class DatabaseSystem {
 //        PersonProfile pr = new PersonProfile("a", "b", "c");
 //        Account ac = new CustomerAccount("un", "pass", pr);
 //        showItemDB();
-    
-    }
 
-    
+    }
 
     public static Connection ConnectDB() {
         String url = "jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC";
@@ -72,34 +69,35 @@ public class DatabaseSystem {
     public static boolean loginDB_Cus(String user, String pass) {//Complete
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            ResultSet cus_rs = stm.executeQuery("SELECT username,password FROM cus_account where username = '"+user+"' and password = '"+pass+"'");
-             while (cus_rs.next()) {
-            String usercheck = cus_rs.getString("username");
-            String passcheck = cus_rs.getString("password");
-                 return true;
-             }
+            ResultSet cus_rs = stm.executeQuery("SELECT username,password FROM cus_account where username = '" + user + "' and password = '" + pass + "'");
+            while (cus_rs.next()) {
+                String usercheck = cus_rs.getString("username");
+                String passcheck = cus_rs.getString("password");
+                return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return false;
     }
+
     public static boolean loginDB_Admin(String user, String pass) {//Complete
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            ResultSet admin_rs = stm.executeQuery("SELECT username,password FROM admin_account where username = '"+user+"' and password = '"+pass+"'");
-             while (admin_rs.next()) {
-            String usercheck = admin_rs.getString("username");
-            String passcheck = admin_rs.getString("password");
-                 return true;
-             }
+            ResultSet admin_rs = stm.executeQuery("SELECT username,password FROM admin_account where username = '" + user + "' and password = '" + pass + "'");
+            while (admin_rs.next()) {
+                String usercheck = admin_rs.getString("username");
+                String passcheck = admin_rs.getString("password");
+                return true;
+            }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return false;
     }
-    
+
     public static PersonProfile getPersonFromDB(String username, String password) {//Complete
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
@@ -110,7 +108,7 @@ public class DatabaseSystem {
                 String address = persons.getString("address");
                 String phone = persons.getString("phone");
 //                System.out.println(name +" "+address +" "+phone);
-                PersonProfile person = new PersonProfile(name,address,phone);
+                PersonProfile person = new PersonProfile(name, address, phone);
 //                return true;
                 return person;
             }
@@ -126,7 +124,7 @@ public class DatabaseSystem {
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
 
-             stm.executeUpdate("INSERT INTO cus_account VALUES('" + username + "','" + password + "','" + name + "','" + address + "','" + phone + "')");
+            stm.executeUpdate("INSERT INTO cus_account VALUES('" + username + "','" + password + "','" + name + "','" + address + "','" + phone + "')");
             return true;
 
         } catch (SQLException ex) {
@@ -134,11 +132,11 @@ public class DatabaseSystem {
         }
         return false;
     }
-    
-    public static Product[] showProductDB(){
-        int count =0 ;
-        int i =0;
-         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
+
+    public static Product[] showProductDB() {
+        int count = 0;
+        int i = 0;
+        try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
             ResultSet item = stm.executeQuery("SELECT * FROM compro.product");
             while (item.next()) {
@@ -147,32 +145,32 @@ public class DatabaseSystem {
             Product[] temp = new Product[count];
             ResultSet item2 = stm.executeQuery("SELECT * FROM compro.product");
             while (item2.next()) {
-                int idproduct= item2.getInt("idproduct");
+                int idproduct = item2.getInt("idproduct");
                 String pdName = item2.getString("product_name");
-                int pdPrice= item2.getInt("product_price");
-                
+                int pdPrice = item2.getInt("product_price");
+
                 temp[i] = new Product(idproduct, pdName, pdPrice);
                 i++;
             }
-                return temp;
-                
+            return temp;
+
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
         return null;
     }
-    
-    public static boolean removeProduct(Product prod){
+
+    public static boolean removeProduct(Product prod) {
 //         if (idproduct == 0) {  
 //                        System.out.println("Failed");
 //                        return false;
 //                    }
-            int idproduct = prod.getProductId();
-         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
+        int idproduct = prod.getProductId();
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-              stm.executeUpdate("delete from compro.product where idproduct = "+ idproduct +"");
+            stm.executeUpdate("delete from compro.product where idproduct = " + idproduct + "");
 //            System.out.println("Delete Success");
-           return true;
+            return true;
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -181,19 +179,22 @@ public class DatabaseSystem {
     }
 
     public static void addProdToDB(Product prod) {
-         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
+        try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
             stm.executeUpdate("INSERT INTO compro.product VALUES(" + prod.getProductId() + ",'" + prod.getProductName() + "'," + prod.getPrice() + ")");
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-       
+        }
+
     }
 
     public void setPriceDB(Product prod, int price) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
+                Statement stm = conn.createStatement();) {
+            stm.executeUpdate("update compro.product set product_price = "+price+" where idproduct = "+prod.getProductId()+" ");
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseSystem.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
-    
-}
 
+}
