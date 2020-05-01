@@ -54,11 +54,11 @@ public class Order {
     }                                    
     public static void main(String[] args) {         
         Product p = new Product(131,"Mooknin",20);         
-        SlotCart cart = new SlotCart(p, 5);
+//        SlotCart cart = new SlotCart(p, 5);
 //        ShoppingCart sp = new ShoppingCart(5);
         
         
-        System.out.println(cart.getCartPrice());
+//        System.out.println(cart.getCartPrice());
 //        writeOrder(sp);              
     }                            
 }

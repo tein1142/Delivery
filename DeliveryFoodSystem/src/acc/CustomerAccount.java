@@ -33,13 +33,13 @@ public class CustomerAccount extends Account{
     }
     
     public boolean addProductToCart(Product prod, int quantity) {
+        System.out.println("Cus " + prod);
         shopcart.addProdToCart(prod, quantity);
         return true;
     }
 
 
     public boolean removeProductFormCart(SlotCart slot) {
-        System.out.println("Cus "+slot);
         shopcart.removeSlotFromCart(slot);
         return true;
     }

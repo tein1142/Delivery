@@ -61,7 +61,6 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
     @Override
     public ShoppingCart removeProductFormCart(SlotCart slot) {
-        System.out.println("Res "+slot);
         customer.removeProductFormCart(slot);
         return customer.getMyShoppingCart();
     }
@@ -112,9 +111,11 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     @Override
     public boolean setPriceProduct(Product prod, int price) {
         for (int i = 0; i < product.length; i++) {
-            if (product[i].equals(prod)) {
+            if (product[i]!=null) { 
+                if (product[i].equals(prod)) {
                 System.out.println("res  "+prod);
                 product[i].setPrice(price);
+                }
             }
         }
         DBsystem.setPriceDB(prod,price);

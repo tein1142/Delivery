@@ -44,6 +44,7 @@ public class SlotCart {
 
     public void increaseQuantity(int quantity) {
         this.quantity += quantity;
+        this.cartPrice += quantity*prod.getPrice();
     }
 
 //    @Override

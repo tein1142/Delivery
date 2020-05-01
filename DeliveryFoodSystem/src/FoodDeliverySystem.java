@@ -244,11 +244,9 @@ public class FoodDeliverySystem {
                 case 0:
                     break;
                 case 1:
-                    showCart();
                     addProductToCart();
                     break;
                 case 2:
-                    showCart();
                     removeProductFormCart();
                     break;
                 case 3:
@@ -302,7 +300,6 @@ public class FoodDeliverySystem {
         int choose = sc.nextInt();
         System.out.println("Enter Price Product:");
         int price = sc.nextInt();
-        System.out.println("res  "+testProduct[choose-1]);
         testRestuarant.setPriceProduct(testProduct[choose-1], price);
         System.out.println("-------------Set Price Complete-----------");
     }
@@ -315,23 +312,25 @@ public class FoodDeliverySystem {
     }
     
      private void addProductToCart() {
+        showCart();
         showProduct();
         System.out.println("Enter product Id: ");
         int choose = sc.nextInt();
         System.out.println("Enter amount : ");
         int quantity = sc.nextInt();
-        this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
+         System.out.println("");
+         this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
     }
      
     private void removeProductFormCart() {
+        showCart();
+        showProduct();
         System.out.println("Enter Number Remove Product From Cart: ");
         int choose = sc.nextInt();
-//        testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose-1];
-        System.out.println("error "+testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose-1]);
         
         testRestuarant.removeProductFormCart(testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose-1]);
         System.out.println("------ Removed ------");
-//        testCustomer.getMyShoppingCart().removeSlotFromCart(testCustomer.getMyShoppingCart().getCartFromShoppingCart()[choose-1]);
+        System.out.println("");
             
             
     }
@@ -346,11 +345,11 @@ public class FoodDeliverySystem {
     }
 
     private void showCart() {
-//        System.out.println(this.testRestuarant.getShoppingCartFromCustomer());
         System.out.println("<<< Shopping Cart >>> ");
-        if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()!= null) {
-            System.out.println(" No Product ");
+        if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[0] == null) {
+            System.out.println("No Product");
         }
+        
         for (int i = 0; i < testProduct.length; i++) {
             if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]!= null) {
                 System.out.println((i +1)+ ". " + testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]);

@@ -31,14 +31,20 @@ public class ShoppingCart {
     }
 
     public void addProdToCart(Product prod, int quantity) {
-        cart[countProductInCart++] = new SlotCart(prod, quantity);
-        
-        for (int i = 0; i < cart.length; i++) {
-             if (cart[i].getProd().equals(prod)) {
-            cart[i].increaseQuantity(quantity);
-            cart[countProductInCart--] = null;
+        cart[countProductInCart] = new SlotCart(prod, quantity);
+        for (int i = 0; i < countProductInCart-1; i++) {
+            if (cart[i]!=null) { 
+//                System.out.println("1g"+cart[i].getProd());
+                if (cart[i].getProd().equals(prod)) {
+//                    System.out.println("2g"+cart[i].getProd());
+//                    System.out.println("3g"+prod);
+                cart[i].increaseQuantity(quantity);
+                cart[countProductInCart] = null;
+                }
             }
+             
         }
+        countProductInCart++;
        
     }
 
@@ -46,7 +52,6 @@ public class ShoppingCart {
         for (int j = 0; j < cart.length; j++) {
             if (cart[j]!= null) { 
                 if (cart[j].equals(slot)) {
-                System.out.println("ShCart "+slot);
                 cart[j] = null;
                 }
             }
@@ -81,12 +86,12 @@ public class ShoppingCart {
     @Override
     public String toString() {
         StringBuilder shopcartString = new StringBuilder();
-//        shopcartString.append(super.toString());
         shopcartString.append(" shopCart :\n");
         for (int i = 0; i < cart.length; i++) {
             shopcartString.append(cart[i] + "\n");
         }
         return shopcartString.toString();
     }
+
 
 }
