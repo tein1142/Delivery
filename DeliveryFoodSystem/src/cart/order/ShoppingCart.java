@@ -32,6 +32,14 @@ public class ShoppingCart {
 
     public void addProdToCart(Product prod, int quantity) {
         cart[countProductInCart++] = new SlotCart(prod, quantity);
+        
+        for (int i = 0; i < cart.length; i++) {
+             if (cart[i].getProd().equals(prod)) {
+            cart[i].increaseQuantity(quantity);
+            cart[countProductInCart--] = null;
+            }
+        }
+       
     }
 
     public void removeSlotFromCart(SlotCart slot) {

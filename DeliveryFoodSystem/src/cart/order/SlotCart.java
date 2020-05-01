@@ -42,7 +42,9 @@ public class SlotCart {
         this.quantity = quantity;
     }
 
-    
+    public void increaseQuantity(int quantity) {
+        this.quantity += quantity;
+    }
 
 //    @Override
 //    public String toString() {

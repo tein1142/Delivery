@@ -266,7 +266,7 @@ public class FoodDeliverySystem {
     }
 
     private void showProduct() {
-        System.out.println("Product : ");
+        System.out.println("<< Product >> ");
         
         testProduct = testRestuarant.getProduct();
         for (int i = 0; i < testProduct.length; i++) {
@@ -347,9 +347,9 @@ public class FoodDeliverySystem {
 
     private void showCart() {
 //        System.out.println(this.testRestuarant.getShoppingCartFromCustomer());
-        System.out.println("Shopping Cart : ");
+        System.out.println("<<< Shopping Cart >>> ");
         if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()!= null) {
-            System.out.println(" No Product. ");
+            System.out.println(" No Product ");
         }
         for (int i = 0; i < testProduct.length; i++) {
             if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]!= null) {
