@@ -45,7 +45,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     }
 
     public Product[] getProduct() {
-        return product;
+        return DatabaseSystem.showProductDB();
     }
 
     public ShoppingCart getShoppingCartFromCustomer() {
@@ -105,6 +105,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
             }
         }
         product = temp;
+        countProduct--;
         return remove;
     }
 
@@ -112,6 +113,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     public boolean setPriceProduct(Product prod, int price) {
         for (int i = 0; i < product.length; i++) {
             if (product[i].equals(prod)) {
+                System.out.println("res  "+prod);
                 product[i].setPrice(price);
             }
         }

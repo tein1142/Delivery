@@ -185,7 +185,7 @@ public class DatabaseSystem {
     }
 
 
-    public void setPriceDB(Product prod, int price) {
+    public static void setPriceDB(Product prod, int price) {
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
             stm.executeUpdate("update compro.product set product_price = "+price+" where idproduct = "+prod.getProductId()+" ");

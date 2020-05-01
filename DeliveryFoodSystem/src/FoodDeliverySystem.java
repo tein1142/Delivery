@@ -95,9 +95,6 @@ public class FoodDeliverySystem {
                     break;
                 case 1:
                     loginAdmin();
-                    showCart();
-//                            showCart();
-//                                    showCart();
                     break;
                 case 2:
                     registerCustomer();
@@ -270,6 +267,7 @@ public class FoodDeliverySystem {
 
     private void showProduct() {
         System.out.println("Product : ");
+        
         testProduct = testRestuarant.getProduct();
         for (int i = 0; i < testProduct.length; i++) {
             if (testProduct[i] != null) {
@@ -304,6 +302,7 @@ public class FoodDeliverySystem {
         int choose = sc.nextInt();
         System.out.println("Enter Price Product:");
         int price = sc.nextInt();
+        System.out.println("res  "+testProduct[choose-1]);
         testRestuarant.setPriceProduct(testProduct[choose-1], price);
         System.out.println("-------------Set Price Complete-----------");
     }
@@ -349,11 +348,13 @@ public class FoodDeliverySystem {
     private void showCart() {
 //        System.out.println(this.testRestuarant.getShoppingCartFromCustomer());
         System.out.println("Shopping Cart : ");
+        if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()!= null) {
+            System.out.println(" No Product. ");
+        }
         for (int i = 0; i < testProduct.length; i++) {
             if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]!= null) {
                 System.out.println((i +1)+ ". " + testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]);
             }
-            
         }
     }
 
