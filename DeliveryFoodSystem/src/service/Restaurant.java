@@ -1,39 +1,37 @@
 package service;
 
 import DBservice.DatabaseSystem;
-import java.util.Arrays;
-import cart.order.Order;
 import cart.order.ShoppingCart;
-import person.PersonProfile;
 import product.Product;
 import acc.Account;
 import acc.AdminAccount;
 import acc.CustomerAccount;
 import cart.order.SlotCart;
 
-enum RestaurantStatus {
-    OPEN, CLOSE
-}
+
 
 public class Restaurant implements CustomerService, AdminService, LoginService {
-
-    private DatabaseSystem DBsystem;
+  
+    private DatabaseSystem DBsystem = new DatabaseSystem();
     private String restaurantName;
     private String location;
     private Product[] product;
     private CustomerAccount customer;
     private AdminAccount admin;
     private RestaurantStatus restaurantStatus;
-
+    
     private int countProduct = 0;
-
-    public Restaurant(String restaurantName, String location, int maxProduct) {
-        this.DBsystem = new DatabaseSystem();
-        
+    
+    public Restaurant(String restaurantName, String location) {
         this.product = DBsystem.showProductDB();
-        countProduct = DBsystem.showProductDB().length;
+        countProduct =  DBsystem.showProductDB().length;
         this.restaurantName = restaurantName;
         this.location = location;
+        this.restaurantStatus = restaurantStatus.OPEN;
+    }
+
+    public AdminAccount getAdmin() {
+        return admin;
     }
 
     public String getRestaurantName() {
@@ -45,7 +43,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     }
 
     public Product[] getProduct() {
-        return DatabaseSystem.showProductDB();
+        return DBsystem.showProductDB();
     }
 
     public ShoppingCart getShoppingCartFromCustomer() {
@@ -85,7 +83,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
             }
             this.product = temp;
         }
-        DBservice.DatabaseSystem.addProdToDB(prod);
+        DBsystem.addProdToDB(prod);
         this.product[countProduct++] = prod;
         return true;
     }
@@ -138,14 +136,14 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
         } else {
             boolean checkLogin = DBsystem.loginDB_Admin(user, pass);
-            AdminAccount cus_login = new AdminAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
+            AdminAccount admin_login = new AdminAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
 
             if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
                 System.out.println("Login Failed!");
                 return false;
             }
 
-            this.admin = cus_login;
+            this.admin = admin_login;
             return true;
         }
     }

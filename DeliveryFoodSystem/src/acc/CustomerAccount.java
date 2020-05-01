@@ -6,14 +6,9 @@
 package acc;
 
 import person.PersonProfile;
-import java.beans.Customizer;
-import java.util.Scanner;
-import cart.order.Order;
 import cart.order.ShoppingCart;
 import cart.order.SlotCart;
 import product.Product;
-import service.AdminService;
-import service.CustomerService;
 
 
 public class CustomerAccount extends Account{
@@ -32,9 +27,7 @@ public class CustomerAccount extends Account{
         return shopcart;
     }
     
-    public boolean addProductToCart(Product prod, int quantity) {
-        
-        System.out.println("Cus " + prod);
+    public boolean addProductToCart(Product prod, int quantity) {  
         shopcart.addProdToCart(prod, quantity);
         return true;
     }
@@ -46,8 +39,7 @@ public class CustomerAccount extends Account{
     }
 
 
-    public int checkPriceFormCart() {
-        shopcart.calTotalPrice();
+    public int checkPriceFormCart() {  
         return shopcart.getTotalPrice();
     }
 

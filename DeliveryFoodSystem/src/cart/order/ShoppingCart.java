@@ -29,6 +29,13 @@ public class ShoppingCart {
     }
 
     public int getTotalPrice() {
+         int cal = 0;
+        for (int i = 0; i < cart.length; i++) {
+            if (cart[i]!= null) {
+                cal += cart[i].getCartPrice();
+            }
+        }
+        totalPrice = cal;
         return totalPrice;
     }
 
@@ -76,15 +83,7 @@ public class ShoppingCart {
         Order.readOrder();
     }
 
-    public void calTotalPrice() {
-        int cal = 0;
-        for (int i = 0; i < cart.length; i++) {
-            if (cart[i]!= null) {
-                cal += cart[i].getCartPrice();
-            }
-        }
-        totalPrice = cal;
-    }
+    
 
     @Override
     public String toString() {

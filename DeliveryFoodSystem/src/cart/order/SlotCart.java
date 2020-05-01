@@ -47,21 +47,13 @@ public class SlotCart {
         this.cartPrice += quantity*prod.getPrice();
     }
 
-//    @Override
-//    public String toString() {
-//        return "SlotCart{" + "prod=" + prod + ", quantity=" + quantity + ", cartPrice=" + cartPrice + '}';
-//    }
+
     @Override
     public String toString() {
         StringBuilder cartString = new StringBuilder();
-//        cartString.append(super.toString());
         cartString.append("Slot{" + prod);
         cartString.append("\t" +"Quantity :" + quantity);
-        cartString.append("\t" +"Price :"+cartPrice +" }");
-        /* bookString.append(", publisher=" + publisher);
-        for (int i = 0; i < authors.length; i++) {
-            bookString.append(authors[i] + "}");
-        }*/
+        cartString.append("\t" +"Price :"+cartPrice +" }");   
         return cartString.toString();
     }
 

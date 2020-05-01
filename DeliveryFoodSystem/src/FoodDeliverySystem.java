@@ -1,13 +1,8 @@
 
 import DBservice.DatabaseSystem;
-import java.util.Iterator;
 import java.util.Scanner;
-import cart.order.ShoppingCart;
-import java.util.Arrays;
-import person.PersonProfile;
 import product.Product;
 import service.Restaurant;
-import acc.Account;
 import acc.AdminAccount;
 import acc.CustomerAccount;
 //<<<<<<< HEAD
@@ -25,31 +20,26 @@ import acc.CustomerAccount;
  */
 public class FoodDeliverySystem {
 
-//    private DatabaseSystem testDB;
+    private DatabaseSystem testDB = new DatabaseSystem();
     private AdminAccount testAdmin;
     private CustomerAccount testCustomer;
     private Product[] testProduct;
-//    private ShoppingCart[] cart;
-//    private Order[] testOrder;
     private Restaurant testRestuarant;
     private static final Scanner sc = new Scanner(System.in);
 
-    public FoodDeliverySystem(String resName, String resLocation, AdminAccount admin) {
-        this.testRestuarant = new Restaurant(resName, resLocation, 10);
+    public FoodDeliverySystem(String resName, String resLocation) {
+        this.testRestuarant = new Restaurant(resName, resLocation);
         this.testProduct = testRestuarant.getProduct();
-        this.testAdmin = admin;
+
     }
 
     public static void main(String[] args) {
-        PersonProfile person = new PersonProfile("tein1142", "BNK", "0874444444");
-        AdminAccount admin = new AdminAccount("username", "pass", person);
-        FoodDeliverySystem system = new FoodDeliverySystem("Tein Res&Bar", "BNK",admin);
-
+        FoodDeliverySystem system = new FoodDeliverySystem("Tein Res&Bar", "BNK");
         system.signIn();
 
     }
 
-     public void signIn() {
+    public void signIn() {
         int menuId;
         do {
             System.out.println("<<Choose your account>>");
@@ -131,40 +121,40 @@ public class FoodDeliverySystem {
         String username;
         String password;
         boolean checkLogin;
-            System.out.println("<<Login>>");
-            System.out.println("Enter Username : ");
-            username = sc.next();
-            System.out.println("Enter Password : ");
-            password = sc.next();
-            
-            testAdmin = new AdminAccount(username, password, DatabaseSystem.getPersonFromDB(username, password));
-            checkLogin = testRestuarant.login(testAdmin, username, password);
-            if (checkLogin != true) {
-                System.out.println("Login Failed!");
-            }else {
-                System.out.println("----------Login Successful----------");
-                adminMenu();
-            }
+        System.out.println("<<Login>>");
+        System.out.println("Enter Username : ");
+        username = sc.next();
+        System.out.println("Enter Password : ");
+        password = sc.next();
+
+        testAdmin = new AdminAccount(username, password, testDB.getPersonFromDB(username, password));
+        checkLogin = testRestuarant.login(testAdmin, username, password);
+        if (checkLogin != true) {
+            System.out.println("Login Failed!");
+        } else {
+            System.out.println("----------Login Successful----------");
+            adminMenu();
+        }
     }
 
     private void loginCustomer() {//Complete
         String username;
         String password;
         boolean checkLogin;
-            System.out.println("<<Login>>");
-            System.out.println("Enter Username : ");
-            username = sc.next();
-            System.out.println("Enter Password : ");
-            password = sc.next();
-            
-            testCustomer = new CustomerAccount(username, password, DatabaseSystem.getPersonFromDB(username, password));
-            checkLogin = testRestuarant.login(testCustomer, username, password);
-           if (checkLogin != true) {
-                System.out.println("Login Failed!");
-            }else {
-                System.out.println("----------Login Successful----------");
-                customerMenu();
-            }
+        System.out.println("<<Login>>");
+        System.out.println("Enter Username : ");
+        username = sc.next();
+        System.out.println("Enter Password : ");
+        password = sc.next();
+
+        testCustomer = new CustomerAccount(username, password, testDB.getPersonFromDB(username, password));
+        checkLogin = testRestuarant.login(testCustomer, username, password);
+        if (checkLogin != true) {
+            System.out.println("Login Failed!");
+        } else {
+            System.out.println("----------Login Successful----------");
+            customerMenu();
+        }
     }
 
     private void registerCustomer() {//Complete
@@ -189,13 +179,13 @@ public class FoodDeliverySystem {
         } while (testRestuarant.register(username, password, name, address, phone) != true);
         System.out.println("----------Register Complete----------");
     }
+
     public void adminMenu() {
         int menuId;
         do {
             System.out.println("<<Admin Menu>>");
             System.out.println("1. Add Product");
             System.out.println("2. Remove Product");
-
             System.out.println("3. Show Product");
             System.out.println("4. Set Price Product");
             System.out.println("0. Exit ");
@@ -205,14 +195,13 @@ public class FoodDeliverySystem {
                 case 0:
                     break;
                 case 1:
-                    addProduct();
                     showProduct();
+                    addProduct();
+                    
                     break;
                 case 2:
-
                     showProduct();
                     removeProduct();
-
                     break;
                 case 3:
                     showProduct();
@@ -220,7 +209,6 @@ public class FoodDeliverySystem {
                 case 4:
                     setPriceProduct();
                     break;
-
             }
         } while (menuId != 0);
     }
@@ -255,6 +243,7 @@ public class FoodDeliverySystem {
                     break;
                 case 5:
                     checkoutOrder();
+                   
                     break;
 
             }
@@ -263,7 +252,7 @@ public class FoodDeliverySystem {
 
     private void showProduct() {
         System.out.println("<< Product >> ");
-        
+
         testProduct = testRestuarant.getProduct();
         for (int i = 0; i < testProduct.length; i++) {
             if (testProduct[i] != null) {
@@ -298,7 +287,7 @@ public class FoodDeliverySystem {
         int choose = sc.nextInt();
         System.out.println("Enter Price Product:");
         int price = sc.nextInt();
-        testRestuarant.setPriceProduct(testProduct[choose-1], price);
+        testRestuarant.setPriceProduct(testProduct[choose - 1], price);
         System.out.println("-------------Set Price Complete-----------");
     }
 
@@ -308,33 +297,32 @@ public class FoodDeliverySystem {
         testRestuarant.removeProduct(index);
         System.out.println("-------------Removed Complete-----------");
     }
-    
-     private void addProductToCart() {
+
+    private void addProductToCart() {
         showCart();
         showProduct();
         System.out.println("Enter product Id: ");
         int choose = sc.nextInt();
         System.out.println("Enter amount : ");
         int quantity = sc.nextInt();
-         System.out.println("");
-         this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
+        System.out.println("");
+        this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
     }
-     
+
     private void removeProductFormCart() {
         showCart();
         showProduct();
         System.out.println("Enter Number Remove Product From Cart: ");
         int choose = sc.nextInt();
-        
-        testRestuarant.removeProductFormCart(testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose-1]);
+
+        testRestuarant.removeProductFormCart(testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose - 1]);
         System.out.println("------ Removed ------");
         System.out.println("");
-            
-            
+
     }
 
     private void checkPriceFormCart() {
-        System.out.println("Total Price : " +testRestuarant.checkPriceFormCart() + " Bath");
+        System.out.println("Total Price : " + testRestuarant.checkPriceFormCart() + " Bath");
     }
 
     private void checkoutOrder() {
@@ -346,10 +334,10 @@ public class FoodDeliverySystem {
         if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[0] == null) {
             System.out.println("No Product");
         }
-        
+
         for (int i = 0; i < testProduct.length; i++) {
-            if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]!= null) {
-                System.out.println((i +1)+ ". " + testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]);
+            if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i] != null) {
+                System.out.println((i + 1) + ". " + testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]);
             }
         }
     }
