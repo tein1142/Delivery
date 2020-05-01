@@ -71,8 +71,8 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     }
 
     @Override
-    public Order checkoutOrder(ShoppingCart cart, CustomerAccount customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void/*Order*/ checkoutOrder(/*ShoppingCart cart, CustomerAccount customer*/) {
+        this.customer.checkoutOrder();
     }
 
     //Admin sservice

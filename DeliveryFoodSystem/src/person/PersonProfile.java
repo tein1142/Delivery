@@ -28,7 +28,12 @@ public class PersonProfile {
 
     @Override
     public String toString() {
-        return "PersonProfile{" + "name=" + name + ", address=" + address + ", tel=" + tel + '}';
+        StringBuilder profile = new StringBuilder();
+        profile.append(" Name : "+ name +"\t");
+        profile.append(" Address :"+address+ "\t");
+        profile.append(" Tel. :"+tel+ "\t");
+        
+        return profile.toString();
     }
     
     

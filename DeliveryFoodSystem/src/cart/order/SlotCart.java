@@ -55,7 +55,7 @@ public class SlotCart {
     public String toString() {
         StringBuilder cartString = new StringBuilder();
 //        cartString.append(super.toString());
-        cartString.append("CartProduct{" + prod);
+        cartString.append("Slot{" + prod);
         cartString.append("\t" +"Quantity :" + quantity);
         cartString.append("\t" +"Price :"+cartPrice +" }");
         /* bookString.append(", publisher=" + publisher);

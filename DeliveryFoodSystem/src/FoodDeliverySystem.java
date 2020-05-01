@@ -66,12 +66,10 @@ public class FoodDeliverySystem {
 
                 case 1:
                     signInAdmin();
-//                    adminMenu();
                     break;
 
                 case 2:
                     signInCustomer();
-//                    customerMenu();
                     break;
 
             }
@@ -110,7 +108,7 @@ public class FoodDeliverySystem {
         do {
             System.out.println("<<Customer Menu>>");
             System.out.println("1. Login");
-            System.out.println("2. Register");//{show basket(), addProduct, removeProduct}
+            System.out.println("2. Register");
 
             System.out.println("0. Exit ");
             System.out.println("Enter your menu [0-2]: ");
@@ -231,7 +229,7 @@ public class FoodDeliverySystem {
         int menuId;
         do {
             System.out.println("<<Customer Menu>>");
-            System.out.println("1. Select Product");//{show basket(), addProduct, removeProduct}
+            System.out.println("1. Select Product");
             System.out.println("2. Remove Product Form Cart");
             System.out.println("3. show Cart");
             System.out.println("4. check Price Form Cart");
@@ -256,7 +254,7 @@ public class FoodDeliverySystem {
                     checkPriceFormCart();
                     break;
                 case 5:
-//                    checkoutOrder();
+                    checkoutOrder();
                     break;
 
             }
@@ -340,8 +338,7 @@ public class FoodDeliverySystem {
     }
 
     private void checkoutOrder() {
-        showCart();
-
+        testRestuarant.checkoutOrder();
     }
 
     private void showCart() {

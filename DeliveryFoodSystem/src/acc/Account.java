@@ -40,6 +40,10 @@ public abstract class Account {
         return loginStatus;
     }
 
+    public PersonProfile getPerson() {
+        return person;
+    }
+
     public void setPerson(PersonProfile person) {
         this.person = person;
     }

@@ -12,18 +12,19 @@ import java.io.FileReader;
 import java.io.FileWriter; 
 import java.io.IOException; 
 import java.io.PrintWriter; 
+import person.PersonProfile;
 import product.Product;  
 /**  *  * @author tanaw  */ 
 public class Order {         
-    public static void writeOrder(SlotCart cart) {         
+    public static void writeOrder(ShoppingCart cart, PersonProfile person) {         
         try (FileWriter fw = new FileWriter("order.txt");              
                 BufferedWriter bw=new BufferedWriter(fw);) {                      
-            bw.write("ProductID:"+cart.getProd().getProductId()+
-                    "\t"+cart.getProd().getProductName()+
-                    "\t price each product: "+cart.getProd().getPrice()+
-                    "\t quantity : "+cart.getQuantity()+
-                    "\t pric: "+cart.getProd().getPrice()+" bath \n"+                     
-                    "Totalprice = "+cart.getCartPrice()+" bath");
+            bw.write("************** Your Order **************"+"\n"+
+                    person+"\n"+
+                    cart.toString()+"\n"+
+                   
+                    "Totalprice : "+cart.getTotalPrice()+" bath \n"+
+                    "***************************************");
         } catch (FileNotFoundException ex) {             
             ex.printStackTrace();
             System.out.println(ex.getMessage());
@@ -34,15 +35,18 @@ public class Order {
         }     
     } 
     
-    public static void readOrder(SlotCart cart) {         
-        try (FileWriter fw = new FileWriter("order.txt");              
-                BufferedWriter bw=new BufferedWriter(fw);) {                      
-            bw.write("ProductID:"+cart.getProd().getProductId()+
-                    "\t"+cart.getProd().getProductName()+
-                    "\t price each product: "+cart.getProd().getPrice()+
-                    "\t quantity : "+cart.getQuantity()+
-                    "\t pric: "+cart.getProd().getPrice()+" bath \n"+                     
-                    "Totalprice = "+cart.getCartPrice()+" bath");
+    public static void readOrder() {         
+        try (FileReader fr = new FileReader("order.txt");
+             BufferedReader br = new BufferedReader(fr);
+             PrintWriter pw = new PrintWriter(System.out);
+             BufferedWriter bw = new BufferedWriter(pw);   ) {  
+            
+            String data;
+            while ((data = br.readLine())!=null) {
+                bw.write(data);
+                bw.write('\n');
+            }
+            
         } catch (FileNotFoundException ex) {             
             ex.printStackTrace();
             System.out.println(ex.getMessage());
@@ -52,13 +56,4 @@ public class Order {
             System.out.println(ex.getMessage());
         }     
     }                                    
-    public static void main(String[] args) {         
-        Product p = new Product(131,"Mooknin",20);         
-//        SlotCart cart = new SlotCart(p, 5);
-//        ShoppingCart sp = new ShoppingCart(5);
-        
-        
-//        System.out.println(cart.getCartPrice());
-//        writeOrder(sp);              
-    }                            
 }

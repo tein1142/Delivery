@@ -29,10 +29,11 @@ public class CustomerAccount extends Account{
     }
     
     public ShoppingCart getMyShoppingCart() {
-          return shopcart;
+        return shopcart;
     }
     
     public boolean addProductToCart(Product prod, int quantity) {
+        
         System.out.println("Cus " + prod);
         shopcart.addProdToCart(prod, quantity);
         return true;
@@ -51,8 +52,14 @@ public class CustomerAccount extends Account{
     }
 
 
-    public Order checkoutOrder(ShoppingCart cart, CustomerAccount customer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void/*Order*/ checkoutOrder() {
+        shopcart.checkOut(shopcart, getPerson());
+    
+    }
+
+    @Override
+    public String toString() {
+        return "CustomerAccount{" +super.toString()+ '}';
     }
 
    

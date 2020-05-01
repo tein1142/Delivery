@@ -15,6 +15,6 @@ public interface CustomerService {
     abstract public ShoppingCart addProductToCart(Product prod, int quantity);
     abstract public ShoppingCart removeProductFormCart(SlotCart slot);
     abstract public int checkPriceFormCart();
-    abstract public Order checkoutOrder(ShoppingCart cart, CustomerAccount customer);//print bill from cart.
+    abstract public void/*Order*/ checkoutOrder(/*ShoppingCart cart, CustomerAccount customer*/);
 
 }

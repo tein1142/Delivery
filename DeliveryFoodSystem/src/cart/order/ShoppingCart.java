@@ -5,6 +5,8 @@
  */
 package cart.order;
 
+import acc.CustomerAccount;
+import person.PersonProfile;
 import product.Product;
 import service.CustomerService;
 
@@ -69,8 +71,9 @@ public class ShoppingCart {
         countProductInCart--;
     }
 
-    public void checkOut() {
-
+    public void checkOut(ShoppingCart cart, PersonProfile person) {
+        Order.writeOrder(cart,person);
+        Order.readOrder();
     }
 
     public void calTotalPrice() {
@@ -86,12 +89,12 @@ public class ShoppingCart {
     @Override
     public String toString() {
         StringBuilder shopcartString = new StringBuilder();
-        shopcartString.append(" shopCart :\n");
+        shopcartString.append("shopCart\n");
         for (int i = 0; i < cart.length; i++) {
-            shopcartString.append(cart[i] + "\n");
+            if (cart[i]!=null) {
+                shopcartString.append((i+1)+". " +cart[i] + "\n");
+            }
         }
         return shopcartString.toString();
     }
-
-
 }
