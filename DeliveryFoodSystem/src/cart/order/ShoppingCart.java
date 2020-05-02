@@ -81,6 +81,7 @@ public class ShoppingCart {
     public void checkOut(ShoppingCart cart, PersonProfile person) {
         Order.writeOrder(cart,person);
         Order.readOrder();
+        System.out.println("Complete");
     }
 
     

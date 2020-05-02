@@ -306,7 +306,10 @@ public class FoodDeliverySystem {
         System.out.println("Enter amount : ");
         int quantity = sc.nextInt();
         System.out.println("");
-        this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
+        if (quantity>=0) {
+            this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
+        }else System.out.println("quantity must > 0");
+        
     }
 
     private void removeProductFormCart() {

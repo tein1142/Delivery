@@ -51,9 +51,9 @@ public class SlotCart {
     @Override
     public String toString() {
         StringBuilder cartString = new StringBuilder();
-        cartString.append("Slot{" + prod);
-        cartString.append("\t" +"Quantity :" + quantity);
-        cartString.append("\t" +"Price :"+cartPrice +" }");   
+        cartString.append("Slot{ " + prod);
+        cartString.append("  Quantity :" + quantity);
+        cartString.append("  Price :"+cartPrice +" }");   
         return cartString.toString();
     }
 

@@ -1,7 +1,9 @@
 ************** Your Order **************
- Name : 333	 Address :444	 Tel. :555	
+Name : 333	Address : 444	Tel. : 555	
 shopCart
-1. Slot{productId: 1 productName: fish price: 30 productStatus: CREATED	Quantity :2	Price :60 }
+1. Slot{productId: 2 productName: sushi price: 99 productStatus: CREATED	Quantity :0	Price :0 }
+2. Slot{productId: 2 productName: sushi price: 99 productStatus: CREATED	Quantity :2	Price :198 }
+3. Slot{productId: 3 productName: Salmon price: 250 productStatus: CREATED	Quantity :2	Price :500 }
 
-Totalprice : 60 bath 
+Totalprice : 698 bath 
 ***************************************
