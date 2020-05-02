@@ -243,7 +243,6 @@ public class FoodDeliverySystem {
                     break;
                 case 5:
                     checkoutOrder();
-                   
                     break;
 
             }
@@ -337,7 +336,6 @@ public class FoodDeliverySystem {
         if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[0] == null) {
             System.out.println("No Product");
         }
-
         for (int i = 0; i < testProduct.length; i++) {
             if (testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i] != null) {
                 System.out.println((i + 1) + ". " + testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[i]);
