@@ -41,7 +41,7 @@ public class DatabaseSystem {
     public boolean loginDB_Cus(String user, String pass) {//Complete
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            ResultSet cus_rs = stm.executeQuery("SELECT username,password FROM cus_account where username = '" + user + "' and password = '" + pass + "'");
+            stm.executeQuery("SELECT username,password FROM cus_account where username = '" + user + "' and password = '" + pass + "'");
                 return true;
             
         } catch (SQLException ex) {
@@ -54,7 +54,7 @@ public class DatabaseSystem {
     public boolean loginDB_Admin(String user, String pass) {//Complete
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            ResultSet rs =stm.executeQuery("SELECT username,password FROM admin_account where username = '" + user + "' and password = '" + pass + "'");    
+            stm.executeQuery("SELECT username,password FROM admin_account where username = '" + user + "' and password = '" + pass + "'");    
                 return true;
             
         } catch (SQLException ex) {

@@ -78,13 +78,9 @@ public class ShoppingCart {
         countProductInCart--;
     }
 
-    public boolean checkOut(ShoppingCart cart, PersonProfile person) {
-        if (cart == null || person == null) {
-            return false;
-        }
+    public void checkOut(ShoppingCart cart, PersonProfile person) {
         Order.writeOrder(cart,person);
         Order.readOrder();
-        return true;
     }
 
     

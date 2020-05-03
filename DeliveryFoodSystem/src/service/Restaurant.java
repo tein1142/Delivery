@@ -73,7 +73,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
         this.customer.checkoutOrder();
     }
 
-    //Admin sservice
+    //Admin service
     @Override
     public boolean addProduct(Product prod) {
         if (countProduct >= product.length) {
@@ -108,10 +108,12 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
 
     @Override
     public boolean setPriceProduct(Product prod, int price) {
+        if (prod == null) {
+            return false;
+        }
         for (int i = 0; i < product.length; i++) {
             if (product[i]!=null) { 
                 if (product[i].equals(prod)) {
-                System.out.println("res  "+prod);
                 product[i].setPrice(price);
                 }
             }
@@ -128,7 +130,6 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
             CustomerAccount cus_login = new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
 
             if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
-                System.out.println("Login Failed!");
                 return false;
             }
             this.customer = cus_login;
@@ -139,7 +140,6 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
             AdminAccount admin_login = new AdminAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
 
             if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
-                System.out.println("Login Failed!");
                 return false;
             }
 

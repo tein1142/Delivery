@@ -43,7 +43,7 @@ public class FoodDeliverySystem {
         int menuId;
         do {
             System.out.println("<<Choose your account>>");
-            System.out.println("1. Admin Login");
+            System.out.println("1. Admin Sign In");
             System.out.println("2. Customer Sign In ");
 
             System.out.println("0. Exit ");
@@ -65,7 +65,8 @@ public class FoodDeliverySystem {
             }
 
         } while (menuId != 0);
-        System.out.println("----------good bye!----------");
+        System.out.println("---------- Thank you for using the service. ----------");
+        System.out.println("-------------------- good bye!-------------------------");
     }
 
     private void signInAdmin() {
@@ -76,16 +77,15 @@ public class FoodDeliverySystem {
             System.out.println("1. Login");
 
             System.out.println("0. Exit ");
-            System.out.println("Enter your menu [0-2]: ");
+            System.out.println("***Note : Admin don't have method Register "
+                    + "\nplease Enter Username :int Password :103 for login Admin account");
+            System.out.println("Enter your menu [0-1]: ");
             menuId = sc.nextInt();
             switch (menuId) {
                 case 0:
                     break;
                 case 1:
                     loginAdmin();
-                    break;
-                case 2:
-                    registerCustomer();
                     break;
 
             }
@@ -163,7 +163,7 @@ public class FoodDeliverySystem {
         String name;
         String address;
         String phone;
-        do {
+        
             System.out.println("<<Register>>");
             System.out.println("Username : ");
             username = sc.next();
@@ -175,9 +175,11 @@ public class FoodDeliverySystem {
             address = sc.next();
             System.out.println("Tel.: ");
             phone = sc.next();
-
-        } while (testRestuarant.register(username, password, name, address, phone) != true);
+        if (testRestuarant.register(username, password, name, address, phone) == false) {
+            System.out.println("Register Failed!");
+        }else{
         System.out.println("----------Register Complete----------");
+        }
     }
 
     public void adminMenu() {
@@ -224,7 +226,7 @@ public class FoodDeliverySystem {
             System.out.println("5. checkout Order");
 
             System.out.println("0. Exit ");
-            System.out.println("Enter your menu [0-3]: ");
+            System.out.println("Enter your menu [0-5]: ");
             menuId = sc.nextInt();
             switch (menuId) {
                 case 0:
@@ -286,7 +288,9 @@ public class FoodDeliverySystem {
         int choose = sc.nextInt();
         System.out.println("Enter Price Product:");
         int price = sc.nextInt();
-        testRestuarant.setPriceProduct(testProduct[choose - 1], price);
+        if (testRestuarant.setPriceProduct(testProduct[choose - 1], price) == false) {
+            System.out.println("Set Price Failed!");
+        }        
         System.out.println("-------------Set Price Complete-----------");
     }
 
@@ -305,9 +309,10 @@ public class FoodDeliverySystem {
         System.out.println("Enter amount : ");
         int quantity = sc.nextInt();
         System.out.println("");
-        if (quantity>=0) {
-            this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity);
-        }else System.out.println("quantity must > 0");
+        
+        System.out.println(this.testRestuarant.addProductToCart(this.testProduct[choose - 1], quantity));
+        System.out.println("------ Added ------");
+        
         
     }
 
@@ -317,7 +322,7 @@ public class FoodDeliverySystem {
         System.out.println("Enter Number Remove Product From Cart: ");
         int choose = sc.nextInt();
 
-        testRestuarant.removeProductFormCart(testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose - 1]);
+        System.out.println(testRestuarant.removeProductFormCart(testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose - 1]));
         System.out.println("------ Removed ------");
 
     }
