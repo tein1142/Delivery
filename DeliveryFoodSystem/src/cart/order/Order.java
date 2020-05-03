@@ -21,18 +21,13 @@ public class Order {
 
     public static void writeOrder(ShoppingCart cart, PersonProfile person) {
         try (FileWriter fw = new FileWriter("order.txt");
-                /*BufferedWriter bw = new BufferedWriter(fw);*/) {
+                BufferedWriter bw = new BufferedWriter(fw);) {
             fw.write("************** Your Order **************\n"
                     + person + "\n"
                     + cart.toString() + "\n"
                     + "Totalprice : " + cart.getTotalPrice() + " bath \n"
                     + "***************************************");
             fw.close();
-//            bw.write("************** Your Order **************\n"
-//                    + person + "\n"
-//                    + cart.toString() + "\n"
-//                    + "Totalprice : " + cart.getTotalPrice() + " bath \n"
-//                    + "***************************************");
 
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -48,12 +43,6 @@ public class Order {
                 BufferedReader br = new BufferedReader(fr); /*PrintWriter pw = new PrintWriter(System.out);/
              /*BufferedWriter bw = new BufferedWriter(pw);*/) {
 
-//            String data;
-//            while ((data = br.readLine()) != null) {
-//                br.read();
-////                bw.write(data);
-////                bw.write('\n');   
-//            }
             String line;
             while ((line = br.readLine()) != null) {
                 System.out.println(line);

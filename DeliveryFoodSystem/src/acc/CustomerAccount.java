@@ -27,15 +27,21 @@ public class CustomerAccount extends Account{
         return shopcart;
     }
     
-    public boolean addProductToCart(Product prod, int quantity) {  
-        shopcart.addProdToCart(prod, quantity);
-        return true;
+    public boolean addProductToCart(Product prod, int quantity) {
+        if (quantity>=0) {
+            shopcart.addProdToCart(prod, quantity);
+            return true;
+        }else return false;
     }
 
 
     public boolean removeProductFormCart(SlotCart slot) {
+        if (slot == null) {
+            return false;
+        }
         shopcart.removeSlotFromCart(slot);
         return true;
+        
     }
 
 
@@ -44,7 +50,7 @@ public class CustomerAccount extends Account{
     }
 
 
-    public void/*Order*/ checkoutOrder() {
+    public void checkoutOrder() {
         shopcart.checkOut(shopcart, getPerson());
     
     }

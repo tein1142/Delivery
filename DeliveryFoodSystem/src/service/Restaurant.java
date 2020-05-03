@@ -69,7 +69,7 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     }
 
     @Override
-    public void/*Order*/ checkoutOrder(/*ShoppingCart cart, CustomerAccount customer*/) {
+    public void checkoutOrder() {
         this.customer.checkoutOrder();
     }
 

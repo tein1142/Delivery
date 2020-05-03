@@ -78,10 +78,13 @@ public class ShoppingCart {
         countProductInCart--;
     }
 
-    public void checkOut(ShoppingCart cart, PersonProfile person) {
+    public boolean checkOut(ShoppingCart cart, PersonProfile person) {
+        if (cart == null || person == null) {
+            return false;
+        }
         Order.writeOrder(cart,person);
         Order.readOrder();
-        System.out.println("Complete");
+        return true;
     }
 
     

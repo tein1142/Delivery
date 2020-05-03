@@ -319,7 +319,6 @@ public class FoodDeliverySystem {
 
         testRestuarant.removeProductFormCart(testRestuarant.getShoppingCartFromCustomer().getCartFromShoppingCart()[choose - 1]);
         System.out.println("------ Removed ------");
-        System.out.println("");
 
     }
 
