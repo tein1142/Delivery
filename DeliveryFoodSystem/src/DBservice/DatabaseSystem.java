@@ -41,7 +41,7 @@ public class DatabaseSystem {
     public boolean loginDB_Cus(String user, String pass) {//Complete
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            stm.executeQuery("SELECT username,password FROM cus_account where username = '" + user + "' and password = '" + pass + "'");
+            stm.executeQuery("SELECT username,password FROM compro.cus_account where username = '" + user + "' and password = '" + pass + "'");
                 return true;
             
         } catch (SQLException ex) {
@@ -54,7 +54,7 @@ public class DatabaseSystem {
     public boolean loginDB_Admin(String user, String pass) {//Complete
         try (java.sql.Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
-            stm.executeQuery("SELECT username,password FROM admin_account where username = '" + user + "' and password = '" + pass + "'");    
+            stm.executeQuery("SELECT username,password FROM compro.admin_account where username = '" + user + "' and password = '" + pass + "'");    
                 return true;
             
         } catch (SQLException ex) {
@@ -64,11 +64,12 @@ public class DatabaseSystem {
         return false;
     }
 
-    public PersonProfile getPersonFromDB(String username, String password) {//Complete
+    public PersonProfile getPersonFromDB(String username, String password, String table) {//Complete
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://projectcompro.mysql.database.azure.com:3306/compro?useSSL=true&requireSSL=false&serverTimezone=UTC", "tein1142@projectcompro", "Tein62130500066");
                 Statement stm = conn.createStatement();) {
 
-            ResultSet persons = stm.executeQuery("select name,address,phone from cus_account where username = '" + username + "' and password = '" + password + "'");
+            ResultSet persons = stm.executeQuery("select name,address,phone from "+table+" where username = '" + username + "' and password = '" + password + "'");
+//            compro.cus_account
             while (persons.next()) {
                 String name = persons.getString("name");
                 String address = persons.getString("address");

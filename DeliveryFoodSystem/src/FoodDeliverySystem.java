@@ -78,7 +78,7 @@ public class FoodDeliverySystem {
 
             System.out.println("0. Exit ");
             System.out.println("***Note : Admin don't have method Register "
-                    + "\nplease Enter Username :int Password :103 for login Admin account");
+                    + "\n***please Enter Username :INT Password :103 for login Admin account");
             System.out.println("Enter your menu [0-1]: ");
             menuId = sc.nextInt();
             switch (menuId) {
@@ -127,7 +127,7 @@ public class FoodDeliverySystem {
         System.out.println("Enter Password : ");
         password = sc.next();
 
-        testAdmin = new AdminAccount(username, password, testDB.getPersonFromDB(username, password));
+        testAdmin = new AdminAccount(username, password, testDB.getPersonFromDB(username, password, "admin_account"));
         checkLogin = testRestuarant.login(testAdmin, username, password);
         if (checkLogin != true) {
             System.out.println("Login Failed!");
@@ -147,7 +147,7 @@ public class FoodDeliverySystem {
         System.out.println("Enter Password : ");
         password = sc.next();
 
-        testCustomer = new CustomerAccount(username, password, testDB.getPersonFromDB(username, password));
+        testCustomer = new CustomerAccount(username, password, testDB.getPersonFromDB(username, password, "cus_account"));
         checkLogin = testRestuarant.login(testCustomer, username, password);
         if (checkLogin != true) {
             System.out.println("Login Failed!");
@@ -253,7 +253,6 @@ public class FoodDeliverySystem {
 
     private void showProduct() {
         System.out.println("<< Product >> ");
-
         testProduct = testRestuarant.getProduct();
         for (int i = 0; i < testProduct.length; i++) {
             if (testProduct[i] != null) {

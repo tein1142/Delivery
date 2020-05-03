@@ -127,19 +127,21 @@ public class Restaurant implements CustomerService, AdminService, LoginService {
     public boolean login(Account acc, String user, String pass) {
         if (acc instanceof CustomerAccount) {
             boolean checkLogin = DBsystem.loginDB_Cus(user, pass);
-            CustomerAccount cus_login = new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
+            CustomerAccount cus_login = new CustomerAccount(user, pass, DBsystem.getPersonFromDB(user, pass, "cus_account"));
 
-            if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
+            if (checkLogin == false || DBsystem.getPersonFromDB(user, pass, "cus_account") == null) {
                 return false;
             }
+            
             this.customer = cus_login;
             return true;
+            
 
         } else {
             boolean checkLogin = DBsystem.loginDB_Admin(user, pass);
-            AdminAccount admin_login = new AdminAccount(user, pass, DBsystem.getPersonFromDB(user, pass));
-
-            if (checkLogin == false || DBsystem.getPersonFromDB(user, pass) == null) {
+            AdminAccount admin_login = new AdminAccount(user, pass, DBsystem.getPersonFromDB(user, pass, "admin_account"));
+            
+            if (checkLogin == false || DBsystem.getPersonFromDB(user, pass, "admin_account") == null) {
                 return false;
             }
 
